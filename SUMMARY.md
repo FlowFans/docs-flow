@@ -7,6 +7,11 @@
 * [Flow 区块链架构](flow-blockchain/flow-qu-kuai-lian-jia-gou.md)
 * [Flow 开发工具](flow-blockchain/flow-kai-fa-gong-ju.md)
 
+## SDK
+
+* [Flow JS  SDK 详解](sdk/flow-js-sdk-xiang-jie/README.md)
+  * [使用 Javascript 与 Flow 交互](sdk/flow-js-sdk-xiang-jie/shi-yong-javascript-yu-flow-jiao-hu.md)
+
 ## Cadence
 
 * [Cadence 面向资源编程](cadence/flow-kai-fa-gong-ju-jian-jie/README.md)
