@@ -12,6 +12,8 @@
 * [Flow JS  SDK 详解](sdk/flow-js-sdk-xiang-jie/README.md)
   * [使用 Javascript 与 Flow 交互](sdk/flow-js-sdk-xiang-jie/shi-yong-javascript-yu-flow-jiao-hu.md)
   * [Flow JS-SDK 源码分析 —— 查询的组装与数据解码](sdk/flow-js-sdk-xiang-jie/flow-jssdk-yuan-ma-fen-xi-cha-xun-de-zu-zhuang-yu-shu-ju-jie-ma.md)
+  * [Flow JS-SDK 源码分析 —— 部署 Cadence 合约](sdk/flow-js-sdk-xiang-jie/flow-jssdk-yuan-ma-fen-xi-bu-shu-cadence-he-yue.md)
+  * [Flow JS-SDK 源码解析 —— 账号授权与签名](sdk/flow-js-sdk-xiang-jie/flow-jssdk-yuan-ma-jie-xi-zhang-hao-shou-quan-yu-qian-ming.md)
 
 ## Cadence
 
