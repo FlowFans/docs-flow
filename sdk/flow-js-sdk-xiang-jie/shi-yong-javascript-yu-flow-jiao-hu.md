@@ -1,5 +1,9 @@
 # 使用 Javascript 与 Flow 交互
 
+_作者：_   [_@Caos_](https://github.com/caosbad)\_\_
+
+\_\_
+
 本文假设读者是熟悉 JavaScript 和 [React](https://reactjs.org/) 的开发者，对 [Flow](https://www.onflow.org/) 有着一定的了解，或者熟悉 Flow 智能合约语言 [Cadence](https://docs.onflow.org/tutorial/cadence/00-introduction) 相关的概念。
 
 我们将通过本文熟悉并搭建本地开发环境，使用 JavaScript 根据现有的 [JS-SDK](https://github.com/onflow/flow-js-sdk) 完成对链的调用与交互。
