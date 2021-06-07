@@ -52,4 +52,5 @@
 ---
 
 * [FlowFans](https://github.com/FlowFans)
+* [Awesome Flow](https://github.com/FlowFans/awesome-flow)
 
