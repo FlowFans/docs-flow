@@ -563,5 +563,7 @@ demo 项目也可以演示了 本地 **Flow emulator** 和 **dev-wallet 的使�
 * **NFT 交易市场**
 * **Flow 稳定币 FUSD**
 
+{% embed url="https://berkeley-blockchain-demo.vercel.app/" %}
+
 \*\*\*\*
 
