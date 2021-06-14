@@ -4,7 +4,7 @@
 
 
 
-![&#x901A;&#x8FC7;Blocto SDK &#x5B8C;&#x6210;&#x7528;&#x6237;&#x4E0E;&#x533A;&#x5757;&#x94FE;&#x7684;&#x53CB;&#x597D;&#x4EA4;&#x4E92;](../../../.gitbook/assets/screen-shot-2020-08-22-at-6.48.39-pm.png)
+![&#x901A;&#x8FC7;Blocto SDK &#x5B8C;&#x6210;&#x7528;&#x6237;&#x4E0E;&#x533A;&#x5757;&#x94FE;&#x7684;&#x53CB;&#x597D;&#x4EA4;&#x4E92;](../../.gitbook/assets/screen-shot-2020-08-22-at-6.48.39-pm.png)
 
 ### 
 
@@ -49,16 +49,16 @@ Blocto SDK支持流、以太坊、波场和未来会有更多的链。Blocto还�
 使用 Blocto 钱包服务快速开发一个简单的dApp 实例。
 
 {% hint style="info" %}
-你需要先安装 [Node.js](https://nodejs.org/zh-tw/download/package-manager/) 和 [Yarn](https://classic.yarnpkg.com/en/docs/install/#windows-stable)
+你需要先安装 [Node.js](https://nodejs.org/zh-tw/download/package-manager/) 和 [Yar](https://classic.yarnpkg.com/en/docs/install/#windows-stable) 
 {% endhint %}
 
 ### 第一步，创建应用程序和安装依赖:
 
 ```
-$ npx create-react-app flow-hello-world
+$ npx create-react-app hello-world
 ```
 
-在您刚刚创建的`flow-hello-world`文件夹中，安装此项目所需的依赖项。
+在您刚刚创建的`hello-world`文件夹中，安装此项目所需的依赖项。
 
 ```text
 $ yarn add @onflow/fcl
@@ -562,8 +562,6 @@ demo 项目也可以演示了 本地 **Flow emulator** 和 **dev-wallet 的使�
 * **NFT 创建** 
 * **NFT 交易市场**
 * **Flow 稳定币 FUSD**
-
-{% embed url="https://berkeley-blockchain-demo.vercel.app/" %}
 
 \*\*\*\*
 
