@@ -1,3 +1,8 @@
+---
+description: >-
+  原始出处：https://joshuahannan.medium.com/how-do-i-check-msg-sender-in-cadence-capabilities-e5a9703e2ca0
+---
+
 # 在Cadence中我该如何查询msg.sender?Capabilities!
 
 Hello! 我是 Josh Hannan，DapperLabs Flow团队的智能合约工程师。距离[上次发表文章](https://joshuahannan.medium.com/optionals-in-cadence-not-optional-fb39bb4b0081)已经有一段时间了。在过去的一段时间，Flow团队一直都很忙碌，但我准备从现在起定期发表文章。Flow团队的进展很快，我们有很多有意思的产出！下面是我最近正在从事的工作。
