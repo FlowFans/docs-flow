@@ -18,6 +18,7 @@
 ## Cadence
 
 * [Cadence 面向资源编程](cadence/flow-kai-fa-gong-ju-jian-jie/README.md)
+  * [FUSD 分析](cadence/flow-kai-fa-gong-ju-jian-jie/fusd-fen-xi.md)
   * [在Cadence中我该如何查询msg.sender?](cadence/flow-kai-fa-gong-ju-jian-jie/zai-cadence-zhong-wo-gai-ru-he-cha-xun-msg.sender.md)
   * [Untitled](cadence/flow-kai-fa-gong-ju-jian-jie/untitled.md)
   * [Decentology 推出 Flow 在线训练营](cadence/flow-kai-fa-gong-ju-jian-jie/decentology-tui-chu-flow-zai-xian-xun-lian-ying.md)
