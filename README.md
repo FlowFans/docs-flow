@@ -14,8 +14,7 @@ description: 汇聚Flow中文资源的一份文档，希望能帮助更多中文
 
 #### 1. fork “[docs-flow](https://github.com/FlowFans/docs-flow)” Github 仓库： 
 
-{% embed url="https://github.com/FlowFans/docs-flow" %}
-
+[https://github.com/FlowFans/docs-flow](https://github.com/FlowFans/docs-flow)
  
 
 ####  2. 根据目录 提交自己的中文文档 ，并发 PR 请求
@@ -35,31 +34,19 @@ description: 汇聚Flow中文资源的一份文档，希望能帮助更多中文
 
 #### 我们欢迎越来越多的小伙伴加入Flow星球，为星球增添色彩！
 
-{% embed url="https://zh.onflow.org/" %}
+[https://zh.onflow.org/](https://zh.onflow.org/)
 
-{% embed url="https://forum.onflow.org/" %}
+[https://forum.onflow.org/](https://forum.onflow.org/)
 
+[https://discord.com/invite/flow](https://discord.com/invite/flow)
 
+[Telegram](https://t.me/flow\_zh)
 
-{% embed url="https://discord.com/invite/flow" %}
+[Flow B站](https://space.bilibili.com/1002168058)
 
+[Flow 微博](https://weibo.com/7610419699)
 
-
-{% embed url="https://t.me/flow\_zh" %}
-
-
-
-{% embed url="https://space.bilibili.com/1002168058" %}
-
-
-
-{% embed url="https://weibo.com/7610419699" %}
-
-
-
-{% embed url="https://blog.csdn.net/weixin\_57551966?spm=1010.2135.3001.5343" %}
-
-
+[Flow CSDN](https://blog.csdn.net/weixin\_57551966?spm=1010.2135.3001.5343)
 
 ![](.gitbook/assets/image.png)
 
@@ -69,19 +56,15 @@ description: 汇聚Flow中文资源的一份文档，希望能帮助更多中文
 
 **微信号 : FlowChainOfficial**
 
-
-
-
-
 当前内容目录： 
 
-{% page-ref page="flow-blockchain/flow-kai-fa-gong-ju.md" %}
+[Flow 开发工具](https://docs.flowfans.org/flow-blockchain/flow-kai-fa-gong-ju)
 
-{% page-ref page="sdk/flow-js-sdk-xiang-jie/" %}
+[FLow JS SDK 详解](https://docs.flowfans.org/sdk/flow-js-sdk-xiang-jie)
 
-{% page-ref page="cadence/flow-kai-fa-gong-ju-jian-jie/" %}
+[Cadence简介](https://docs.flowfans.org/cadence/flow-kai-fa-gong-ju-jian-jie)
 
-{% page-ref page="project/she-qu-can-kao-zi-yuan/" %}
+[Flow 生态项目](https://docs.flowfans.org/project/she-qu-can-kao-zi-yuan)
 
 
 
