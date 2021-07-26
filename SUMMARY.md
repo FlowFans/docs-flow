@@ -53,10 +53,10 @@
 ## Other Resources <a id="qi-ta-zi-yuan"></a>
 
 * [官方文档](https://docs.onflow.org/)
+* [flowverse 生态一览](https://www.flowverse.co/)
 
 ---
 
 * [FlowFans](https://github.com/FlowFans)
 * [Awesome Flow](https://github.com/FlowFans/awesome-flow)
-* [flowverse 生态一览](https://www.flowverse.co/)
 
