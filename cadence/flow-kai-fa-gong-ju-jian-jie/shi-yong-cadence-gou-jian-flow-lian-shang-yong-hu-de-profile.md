@@ -6,7 +6,7 @@
 
 ### 二、 链上Profile的特点
 
-每个用户的Profile是独立保存在其账号模型下的一个 `Resource`
+每个用户的Profile是独立保存在其账户模型下的一个 `Resource`
 
 ### 三、 profile.cdc 合约详解
 
