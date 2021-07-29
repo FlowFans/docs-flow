@@ -6,7 +6,7 @@
 
 ### 二、 链上Profile的特点
 
-
+每个用户的Profile是独立保存在其账号模型下的一个 `Resource`
 
 ### 三、 profile.cdc 合约详解
 
@@ -473,7 +473,7 @@ pub contract Profile {
 
 **Versus Profile**:  [https://flow-view-source.com/testnet/account/0xba1132bc08f82fe2/contract/Ghost](https://flow-view-source.com/testnet/account/0xba1132bc08f82fe2/contract/Ghost)
 
-Demo 合约部分略有差异，Versus的Profile增加了 Follow 功能
+Demo 合约部分略有差异，Versus的Profile增加了其他功能，实现原理基本一致
 
 **Demo**： [https://flowfans.on.fleek.co/](https://flowfans.on.fleek.co/)
 
