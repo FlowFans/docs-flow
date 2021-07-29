@@ -18,6 +18,7 @@
 ## Cadence
 
 * [Cadence 面向资源编程](cadence/flow-kai-fa-gong-ju-jian-jie/README.md)
+  * [Cadence的学习经验总结](cadence/flow-kai-fa-gong-ju-jian-jie/cadence-de-xue-xi-jing-yan-zong-jie.md)
   * [Cadence 基础知识](cadence/flow-kai-fa-gong-ju-jian-jie/cadence-ji-chu-zhi-shi/README.md)
     * [Cadence 常用语法](cadence/flow-kai-fa-gong-ju-jian-jie/cadence-ji-chu-zhi-shi/cadence-chang-yong-yu-fa.md)
     * [权限控制（Access control）](cadence/flow-kai-fa-gong-ju-jian-jie/cadence-ji-chu-zhi-shi/quan-xian-kong-zhi-access-control.md)
