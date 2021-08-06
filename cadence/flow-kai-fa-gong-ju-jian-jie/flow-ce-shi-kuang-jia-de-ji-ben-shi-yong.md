@@ -105,7 +105,7 @@ yarn jest
 
 框架 API ： [https://github.com/onflow/flow-js-testing/blob/master/docs/api.md](https://github.com/onflow/flow-js-testing/blob/master/docs/api.md)
 
-HelloWorld测试示例：
+HelloWorld测试示例： [https://github.com/FlowFans/flow-testing-quickstart](https://github.com/FlowFans/flow-testing-quickstart)
 
 
 
