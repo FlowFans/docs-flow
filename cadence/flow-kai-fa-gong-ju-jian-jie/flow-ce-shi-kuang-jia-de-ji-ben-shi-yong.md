@@ -52,5 +52,7 @@ yarn init-flow
 yarn start-emulator
 ```
 
+更多详细的API ： [https://github.com/onflow/flow-js-testing/blob/master/docs/api.md](https://github.com/onflow/flow-js-testing/blob/master/docs/api.md)
+
 
 
