@@ -16,6 +16,18 @@ description: '@Lsy'
 *  在后台运行 Flow Emulator。您可以将它与 Flow CLI 一起安装。 有关说明，请参阅[安装 Flow CLI](https://docs.onflow.org/flow-cli/install)。
 *  如果您已经安装了它，请在终端中运行`flow init`以创建`flow.json`配置文件。然后用 启动模拟器`flow emulator -v`。
 
+### 在 Playground 编写 Cadence
+
+每个 Playground 项目都能够将`export`其内容作为一组带有 Cadence 模板代码和“开箱即用”基本测试环境的文件。
+
+如果要使用此功能：
+
+* 按右上角的“导出”按钮
+* 选择项目的名称 - 或保留自动生成的版本
+* 在弹出窗口中按“导出”按钮
+
+Playground 将为您创建一个`zip`文件，您可以将其保存在任何您喜欢的地方。
+
 
 
 
