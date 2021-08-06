@@ -83,5 +83,19 @@ fcl.config()
 flow emulator start
 ```
 
+保持模拟器运行，你需要它!
+
+### 3. Harness
+
+很容易使用这个FCL应用程序作为一个简单的应用程序，在开发期间与开发钱包进行交互: [https://github.com/orodio/harness](https://github.com/orodio/harness)
+
+```text
+git clone https://github.com/orodio/harness.git
+
+cd harness
+yarn install
+yarn start
+```
+
 
 
