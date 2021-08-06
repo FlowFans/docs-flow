@@ -22,7 +22,7 @@ description: '@Lsy'
 
 如果要使用此功能：
 
-![](../../.gitbook/assets/image%20%282%29.png)
+![](../../.gitbook/assets/image%20%283%29.png)
 
 * 按右上角的“Export”按钮
 * 选择项目的名称 - 或保留自动生成的版本
@@ -94,6 +94,8 @@ const basePath = path.resolve(__dirname, "../cadence");
 ```text
 yarn jest
 ```
+
+![](../../.gitbook/assets/image%20%282%29.png)
 
 注意： Playground 导出的 `Cadence` 文件中，关于 `import flow-js-testing` 相关依赖的代码，需要略微修改，去除掉 dist及其后缀路径，否则可能无法运行，后续版本应该会进行更新。
 
