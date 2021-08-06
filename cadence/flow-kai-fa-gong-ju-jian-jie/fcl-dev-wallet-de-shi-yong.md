@@ -75,3 +75,13 @@ fcl.config()
 
 #### Flow模拟器启动
 
+为了开发目的，Flow模拟器模拟真实的Flow网络。
+
+开启一个新的命令行窗口，在这个目录下运行以下命令启动模拟器:
+
+```text
+flow emulator start
+```
+
+
+
