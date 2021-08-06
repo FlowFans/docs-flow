@@ -32,12 +32,12 @@ yarn dev
 ```text
 # FCL开发钱包需要知道如何与Flow模拟器交互
 # 因为 FCL开发钱包需要通过 Javascript 使用 FCL 与 emulator 进行交互
-# 所以设定 emulators grpc-http proxy
+# 所以设定 emulators grpc-http proxy， 一般不必修改
 FLOW_ACCESS_NODE=http://localhost:8080
 
-# The FCL Dev Wallet requires a single account to use as a base/starting point.
-# This account will be used to create and manage other accounts.
-# We recommend to use the service account definied in the flow.json file your emulator is using.
+# FCL开发钱包需要一个帐户作为基础/起点。
+# 此帐户将用于创建和管理其他帐户。
+# 我们建议使用Flow中定义的服务帐户， 该账户被定义在 flow.json 文件中，也是你本地模拟器正在使用的账户。 
 FLOW_ACCOUNT_ADDRESS=0xf8d6e0586b0a20c7
 FLOW_ACCOUNT_KEY_ID=0
 FLOW_ACCOUNT_PRIVATE_KEY=84f82df6790f07b281adb5bbc848bd6298a2de67f94bdfac7a400d5a1b893de5
