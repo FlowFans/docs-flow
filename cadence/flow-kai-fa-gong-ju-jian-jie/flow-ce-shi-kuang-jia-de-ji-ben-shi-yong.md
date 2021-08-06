@@ -54,7 +54,7 @@ yarn start-emulator
 
 ### 基本的使用
 
-创建一个测试实例， 测试创建账户的功能：
+创建一个 `deploy.test.js` 的测试实例， 测试创建账户的功能：
 
 ```text
 import path from "path";
@@ -82,6 +82,14 @@ describe("Accounts", () => {
   });
 });
 ```
+
+其中，在开始一定要指定你的 Cadence 文件所在的目录，如果你是从Playground导出的源码，那么只需要写如下内容： 
+
+```text
+const basePath = path.resolve(__dirname, "../cadence");
+```
+
+
 
 更多详细的API ： [https://github.com/onflow/flow-js-testing/blob/master/docs/api.md](https://github.com/onflow/flow-js-testing/blob/master/docs/api.md)
 
