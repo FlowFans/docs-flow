@@ -54,7 +54,34 @@ yarn start-emulator
 
 ### 基本的使用
 
+创建一个测试实例， 测试创建账户的功能：
 
+```text
+import path from "path";
+import { getAccountAddress, init } from "flow-js-testing";
+
+const basePath = path.resolve(__dirname, "../cadence");
+
+beforeAll(() => {
+  init(basePath);
+});
+
+describe("Accounts", () => {
+  test("Create Accounts", async () => {
+    const Alice = await getAccountAddress("Alice");
+    const Bob = await getAccountAddress("Bob");
+    const Charlie = await getAccountAddress("Charlie");
+    const Dave = await getAccountAddress("Dave");
+
+    console.log("Four accounts were created with following addresses:\n", {
+      Alice,
+      Bob,
+      Charlie,
+      Dave,
+    });
+  });
+});
+```
 
 更多详细的API ： [https://github.com/onflow/flow-js-testing/blob/master/docs/api.md](https://github.com/onflow/flow-js-testing/blob/master/docs/api.md)
 
