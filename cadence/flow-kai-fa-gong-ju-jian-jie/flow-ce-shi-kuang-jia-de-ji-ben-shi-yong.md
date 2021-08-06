@@ -30,7 +30,15 @@ description: '@Lsy'
 
 Playground 将为您创建一个`zip`文件，您可以将其保存在任何您喜欢的地方。
 
+### 安装测试环境
 
+安装相关依赖，你可以在命令行中执行如下命令：
+
+```text
+npm install flow-js-testing jest @babel/core @babel/preset-env babel-jest @onflow/types
+```
+
+Playground 导出的 Zip 中包含 `cadence` 目录和  `test` 目录
 
 
 
