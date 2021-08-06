@@ -89,7 +89,13 @@ describe("Accounts", () => {
 const basePath = path.resolve(__dirname, "../cadence");
 ```
 
+执行 如下命令进行测试：
 
+```text
+yarn jest
+```
+
+注意： Playground 导出的 `Cadence` 文件中，关于 `import flow-js-testing` 相关依赖的代码，需要略微修改，去除掉 dist及其后缀路径，否则可能无法运行，后续版本应该会进行更新。
 
 更多详细的API ： [https://github.com/onflow/flow-js-testing/blob/master/docs/api.md](https://github.com/onflow/flow-js-testing/blob/master/docs/api.md)
 
