@@ -33,6 +33,7 @@
   * [Decentology 推出 Flow 在线训练营](cadence/flow-kai-fa-gong-ju-jian-jie/decentology-tui-chu-flow-zai-xian-xun-lian-ying.md)
   * [深入了解Flow：Cadence，为数字资产而专门打造的智能合约编程语言](cadence/flow-kai-fa-gong-ju-jian-jie/shen-ru-le-jie-flowcadence-wei-shu-zi-zi-chan-er-zhuan-men-da-zao-de-zhi-neng-he-yue-bian-cheng-yu-y.md)
   * [FCL Dev Wallet 的使用](cadence/flow-kai-fa-gong-ju-jian-jie/fcl-dev-wallet-de-shi-yong.md)
+  * [Flow 测试框架的基本使用](cadence/flow-kai-fa-gong-ju-jian-jie/flow-ce-shi-kuang-jia-de-ji-ben-shi-yong.md)
   * [Cadence 模板生成器的使用](cadence/flow-kai-fa-gong-ju-jian-jie/cadence-mo-ban-sheng-cheng-qi-de-shi-yong.md)
   * [使用 Cadence 构建Flow链上用户的Profile](cadence/flow-kai-fa-gong-ju-jian-jie/shi-yong-cadence-gou-jian-flow-lian-shang-yong-hu-de-profile.md)
 
