@@ -33,6 +33,7 @@
   * [FUSD 分析](cadence/flow-kai-fa-gong-ju-jian-jie/fusd-fen-xi.md)
   * [在Cadence中我该如何查询msg.sender?](cadence/flow-kai-fa-gong-ju-jian-jie/zai-cadence-zhong-wo-gai-ru-he-cha-xun-msg.sender.md)
   * [Decentology 推出 Flow 在线训练营](cadence/flow-kai-fa-gong-ju-jian-jie/decentology-tui-chu-flow-zai-xian-xun-lian-ying.md)
+  * [深入了解Flow：Cadence，为数字资产而专门打造的智能合约编程语言](cadence/flow-kai-fa-gong-ju-jian-jie/shen-ru-le-jie-flowcadence-wei-shu-zi-zi-chan-er-zhuan-men-da-zao-de-zhi-neng-he-yue-bian-cheng-yu-y.md)
   * [使用 Cadence 构建Flow链上用户的Profile](cadence/flow-kai-fa-gong-ju-jian-jie/shi-yong-cadence-gou-jian-flow-lian-shang-yong-hu-de-profile.md)
 
 ## projects <a id="project"></a>
