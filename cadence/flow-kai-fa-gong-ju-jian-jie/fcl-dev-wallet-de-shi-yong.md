@@ -12,7 +12,7 @@
 
 
 
-### 启动项目
+### 1. 启动项目
 
 ```text
 git clone https://github.com/onflow/fcl-dev-wallet.git
@@ -25,7 +25,9 @@ yarn install
 yarn dev
 ```
 
-配置文件信息：
+ 注**:**  您可以更改运行开发钱包的端口 `npm run dev -- -p 9999`
+
+#### 配置文件信息：
 
 {% tabs %}
 {% tab title=".env.local " %}
@@ -49,5 +51,25 @@ FLOW_ACCOUNT_PUBLIC_KEY=4519e9fbf966c6589fafe60903c0da5f55c5cb50aee5d870f097b35d
 {% endtab %}
 {% endtabs %}
 
+### 2. 配置你的应用
 
+FCL 开发钱包被设计用于`0.0.68`或更高版本的 FCL。目前`fcl@0.0.68`是alpha版本，可以通过以下方式安装: `npm install @onflow/fcl@alpha`或`yarn add @onflow/fcl@alpha`。
+
+{% tabs %}
+{% tab title="config.js" %}
+```text
+import * as fcl from "@onflow/fcl"
+
+ 
+fcl.config()
+  // 写好本地模拟启动 http 代理地址 ， 可采用读取配置文件的方式 .env.local
+  // .put("accessNode.api", process.env.FLOW_ACCESS_NODE)
+  .put("accessNode.api", "http://localhost:8080")   
+  // 指向 开发钱包发现服务 ，使得FCL与之交互， 可采用读取配置文件的方式 .env.local
+  .put("discovery.wallet", "http://localhost:3000/fcl/authn")  
+  // 指向 服务地址 及 flow.json 中地址
+  .put("0xSERVICE", process.env.FLOW_ACCOUNT_ADDRESS)
+```
+{% endtab %}
+{% endtabs %}
 
