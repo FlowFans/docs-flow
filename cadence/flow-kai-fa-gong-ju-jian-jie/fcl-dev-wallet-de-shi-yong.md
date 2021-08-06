@@ -12,3 +12,42 @@
 
 
 
+### 启动项目
+
+```text
+git clone https://github.com/onflow/fcl-dev-wallet.git
+cd fcl-dev-wallet
+cp .env.example .env.local
+
+# 更新 .env.local 中的值以匹配您的本地环境
+
+yarn install
+yarn dev
+```
+
+配置文件信息：
+
+{% tabs %}
+{% tab title=".env.local " %}
+```text
+# FCL开发钱包需要知道如何与Flow模拟器交互
+# 因为 FCL开发钱包需要通过 Javascript 使用 FCL 与 emulator 进行交互
+# 所以设定 emulators grpc-http proxy
+FLOW_ACCESS_NODE=http://localhost:8080
+
+# The FCL Dev Wallet requires a single account to use as a base/starting point.
+# This account will be used to create and manage other accounts.
+# We recommend to use the service account definied in the flow.json file your emulator is using.
+FLOW_ACCOUNT_ADDRESS=0xf8d6e0586b0a20c7
+FLOW_ACCOUNT_KEY_ID=0
+FLOW_ACCOUNT_PRIVATE_KEY=84f82df6790f07b281adb5bbc848bd6298a2de67f94bdfac7a400d5a1b893de5
+FLOW_ACCOUNT_PUBLIC_KEY=4519e9fbf966c6589fafe60903c0da5f55c5cb50aee5d870f097b35dfb6de13c170718cd92f50811cdd9290e51c2766440b696e0423a5031ae482cca79e3c479
+
+
+
+```
+{% endtab %}
+{% endtabs %}
+
+
+
