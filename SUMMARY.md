@@ -36,6 +36,7 @@
   * [Flow 测试框架的基本使用](cadence/flow-kai-fa-gong-ju-jian-jie/flow-ce-shi-kuang-jia-de-ji-ben-shi-yong.md)
   * [Cadence 模板生成器的使用](cadence/flow-kai-fa-gong-ju-jian-jie/cadence-mo-ban-sheng-cheng-qi-de-shi-yong.md)
   * [使用 Cadence 构建Flow链上用户的Profile](cadence/flow-kai-fa-gong-ju-jian-jie/shi-yong-cadence-gou-jian-flow-lian-shang-yong-hu-de-profile.md)
+  * [如何在 Flow主网创建一个Account ？](cadence/flow-kai-fa-gong-ju-jian-jie/ru-he-zai-flow-zhu-wang-chuang-jian-yi-ge-account.md)
 
 ## projects <a id="project"></a>
 
