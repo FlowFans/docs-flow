@@ -137,5 +137,20 @@ Contracts (hidden, use --include contracts)
 
 最后，我们可以在主网的区块浏览器，确认一下新账户`0x0ae342dfada66015`的状态和基本信息：
 
+Flow 主网区块浏览器： [https://flowscan.org/](https://flowscan.org/)  
+
+
+### 相关资料
+
+keystore 的详细原理： [https://ethfans.org/posts/what-is-an-ethereum-keystore-file](https://ethfans.org/posts/what-is-an-ethereum-keystore-file)
+
+keysotre 转换 “私钥”的过程： [https://script.money/posts/027-flow\_mainnet\_cli\_transaction/](https://script.money/posts/027-flow_mainnet_cli_transaction/)
+
 Flow 主网区块浏览器： [https://flowscan.org/](https://flowscan.org/)
+
+Flow CLI： [https://docs.onflow.org/flow-cli/generate-keys/](https://docs.onflow.org/flow-cli/generate-keys/)
+
+### 
+
+
 
