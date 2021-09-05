@@ -16,7 +16,7 @@ description: 如何在 Flow主网创建一个Account ？
 
 
 
-### 1. 拥有包含少量FlowToken的账户，作为签名（singer）账户
+### 1. 拥有包含少量FlowToken的账户，作为签名（signer）账户
 
 该账号可以从Blocto中进行导出， 导出的文件是包含 keystore 内容的PDF文件。我们需要通过“备援密码” + keystore 进行解析，获得主网账户的“私钥”。
 
