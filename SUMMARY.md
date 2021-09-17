@@ -37,6 +37,7 @@
   * [Cadence 模板生成器的使用](cadence/flow-kai-fa-gong-ju-jian-jie/cadence-mo-ban-sheng-cheng-qi-de-shi-yong.md)
   * [使用 Cadence 构建Flow链上用户的Profile](cadence/flow-kai-fa-gong-ju-jian-jie/shi-yong-cadence-gou-jian-flow-lian-shang-yong-hu-de-profile.md)
   * [如何在 Flow主网创建一个Account ？](cadence/flow-kai-fa-gong-ju-jian-jie/ru-he-zai-flow-zhu-wang-chuang-jian-yi-ge-account.md)
+  * [解构Flow：可百万级扩容的多节点架构](cadence/flow-kai-fa-gong-ju-jian-jie/jie-gou-flow-ke-bai-wan-ji-kuo-rong-de-duo-jie-dian-jia-gou.md)
 
 ## projects <a id="project"></a>
 
