@@ -1,178 +1,249 @@
 # 解构Flow：可百万级扩容的多节点架构
 
-![](../../.gitbook/assets/image%20%287%29.png)
+原文：e is the blueprint for future-proof, consumer-scale blockchain protocols.
 
-_**Background:** Flow is a new blockchain originally designed and developed by Dapper Labs, the makers of CryptoKitties and NBA Top Shot. In this multi-part series, we will explore the different components of Flow blockchain from a technical perspective._
+Inside Flow: The Multi-Node Architecture that Scales to Millions
 
-_**•**_ [_**Cadence**_](https://www.onflow.org/post/flow-blockchain-cadence-programming-language-resources-assets)_**,** the new programming language that makes smart contract development ****faster, safer_
+[https://www.onflow.org/post/flow-blockchain-multi-node-architecture-advantages](https://www.onflow.org/post/flow-blockchain-multi-node-architecture-advantages)
 
-_**•**_ [_**Flow Client Library \(FCL\)**_](https://www.onflow.org/post/inside-flow-the-power-of-simplicity-with-fcl)_, it is analogous to Web3.js on Ethereum, but built for the consumer audience in mind_
+## 解构Flow：可百万级扩容的多节点架构
 
-_**•**_ [_**Flow multi-node architecture**_](http://www.onflow.org/post/flow-blockchain-multi-node-architecture-advantages)_, future-proof scaling for the mainstream adoption_
+![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b16b367e-cae0-4808-9dec-622649c5ac00/Untitled.png)
 
+_**背景：** Flow 是一个新的区块链，最初由 CryptoKitties 和 NBA Top Shot 的制造商 Dapper Labs 设计和开发。在这个多部分的系列中，我们将从技术角度探讨 Flow 区块链的不同组件。_
 
+‌
 
-Blockchain mass-adoption is well underway, and the success of applications like NBA Top Shot are just one testimony for this promising development. Large audiences of consumers are waking up to the potential the technology yields, and whole communities around brands, developers, creators, stars and fans are onboarding to decentralised applications every day.   
+* [_**Cadence**_](https://www.onflow.org/post/flow-blockchain-cadence-programming-language-resources-assets)_**，使智能合约开发更快、更安全的新编程语言**_
 
-For the blockchain protocols that power these applications, however, this ever-growing load of transactions poses a huge challenge: Scalability is the make-or-break moment for the blockchain industry as a whole — **only if networks can scale to millions by default, will millions come**. How the scalability issue is answered inevitably shapes the role that blockchain will play for a mass-audience of consumers.
+‌
 
-The vast majority of projects currently relies on two solutions for this quest for consumer-grade scalability: **Sharding** \(Layer 1\) and **rollups** \(Layer 2\). These answers might tackle the immediate technical needs, but as we’ll explore later, they introduce greater risks, minimise the benefits of decentralisation and add complexity for developers and end-users in the long term.  
+* \*\*\*\*\* [**Flow Client Library \(FCL\)**](https://www.onflow.org/post/inside-flow-the-power-of-simplicity-with-fcl)，它类似于以太坊上的 Web3.js，但专为消费者而构建\*
 
+‌
 
-* **Scales to millions by default** by providing a highly performant base layer
-* **Makes** **network participation more accessible** by lowering requirements for certain node types ,  they can even be run on consumer-grade laptops
-* **Increases decentralisation** by lowering the barrier of running a node, which increases the likelihood of more nodes participating
+* [Flow\***多节点架构**](http://www.onflow.org/post/flow-blockchain-multi-node-architecture-advantages)，面向未来的主流扩展方案\*
 
-‍
+区块链的大规模采用正在顺利进行，NBA Top Shot 等应用程序的成功只是这一有希望的发展的一个证明。大量消费者正在意识到技术收益的潜力，围绕品牌、开发者、创作者、明星和粉丝的整个社区每天都在加入去中心化应用程序。
 
-This enables a **multi-node architecture** that
+‌
 
-Collection nodes **batch** the work, consensus nodes **secure** the work, execution nodes **do** the work and verification nodes **check** the work.
+然而，对于为这些应用程序提供动力的区块链协议而言，这种不断增长的交易负载带来了巨大的挑战：可扩展性是整个区块链行业的成败时刻——前提是 **网络默认可以扩展到数百万，数以百万计的人会来吗**？如何解决可扩展性问题不可避免地会影响区块链为广大消费者所扮演的角色。
 
-By introducing the **paradigm of pipelining**, Flow proposes **a solution that is more scalable, more decentralised and more secure than existing scaling solutions**, without increasing complexity for developers or needing to rely on off-chain workarounds: Specialised node types. Rather than each node having to do all the work, Flow’s nodes are specialised along a transaction pipeline.
+‌
 
+绝大多数的项目目前依赖此追求消费级的可扩展性两种解决方案：**Sharding**（第1层）和 R**ollups**（2层）。这些答案可能会解决眼前的技术需求，但正如我们稍后将探讨的那样，它们会带来更大的风险，最大限度地减少去中心化的好处，并从长远来看增加了开发人员和最终用户的复杂性。
 
+通过引入**流水线范式**，Flow 提出**了一种比现有扩展解决方案更具可扩展性、更分散和更安全的解决方案**，同时不会增加开发人员的复杂性或需要依赖链下解决方法：专用节点类型。Flow 的节点不是每个节点都必须完成所有工作，而是沿着事务管道专门化，即各司其职。
 
-* **Abstracts complexity into the protocol to preserve ease of development**, letting developers ship applications faster without needing to worry about infrastructure requirements
-* **Ensures great end-user experience** by avoiding Layer 2 solutions, freeing users from needing to consider technical implication and keeping onboarding simple
-* **Preserves security at scale**, since no transaction has to rely on potentially corrupt off-chain computations and all interactions between entities can happen in one atomic, consistent, isolated, and durable \(ACID\) transaction
+收集节点\*\*批处理“**工作”，共识节点**保护“**工作”，执行节点**做“**工作”，验证节点**检查“\*\*工作”。
 
-This article will provide a short refresher on the basics before analysing the issues with existing scaling solutions, while contrasting how Flow’s new paradigm of pipelining specialised node types circumvents these limitations.   
-  
-Basics revisited: The scalability trilemma
+‌
 
-Real-world value can only be taken reliably to the digital sphere if data integrity and security is guaranteed. Centralised parties corrupt this guarantee willingly or unwillingly, either by pursuing malicious behaviour themselves or by posing a single point of failure in case of outside attacks. Think about it: If only one corporation manages a user’s account balance, nothing could stop an employee of this organisation from tampering with it or accidentally deleting it. There is no safety mechanism in place that reaches beyond the organisation as a central party.
+这使**多节点架构成为**可能：
 
-The integrity of data can only be assured if a system of checks and balances is in place, and this is precisely what blockchain technology offers. The main advantage of a blockchain network is that it provides high degrees of decentralisation, describing a network that consists of various individual nodes that jointly manage a shared state: Account balances, smart contract code, data structures, and much more. 
+* **默认情况下**通过提供高性能, 可使基础层**扩展到数百万**
+* 通过降低某些节点类型的要求，**使网络参与更容易**，它们甚至可以在消费级笔记本电脑上运行
+* 通过降低运行节点的障碍来**增加去中心化**，从而增加更多节点参与的可能性
+* **将复杂性抽象到协议中以保持易于开发**，让开发人员更快地发布应用程序而无需担心基础设施要求。
+* 避免使用第 2 层解决方案，使用户无需考虑技术影响并保持入门简单，从而**确保出色的最终用户体验**
+* **大规模保护安全性**，因为没有交易必须依赖潜在的损坏链下计算，并且实体之间的所有交互都可以在一个原子、一致、隔离和持久 \(ACID\) 交易中发生
 
-Transactions are algorithms that mutate that state, or, put simply, transactions resemble user-initiated actions that handle value, identity, or other critical processes. The decentralised nodes agree on what transactions are valid, and which are not — they find consensus and punish malicious nodes. 
+‌
 
+在分析现有扩展解决方案的问题之前，本文将简要回顾基础知识，同时对比 Flow 的流水线专用节点类型的新范式如何规避这些限制。
 
+### 重温基础知识：可扩展性的三难困境
 
-Every blockchain that supports Turing-completeness, i.e. the ability to run any kind of computation, has one major vulnerability: the possibility of someone spamming the network with never-ending computations. Also, since most networks are publicly available, blockchains represent a public good, and as the _tragedy of the commons_ describes, this often leads to few ruthless actors exploiting this good, possibly ending in harmful over-consumption or depletion of the resource itself - just think about our environment in this context.
+‌
 
-To prevent these Denial-of-Service attacks and limit overuse, networks like Ethereum have introduced a transaction fee: _gas_. Gas makes DoS attacks economically highly unfeasible, because a transaction needs to be provided with an amount of gas that increases with the complexity of the transaction. 
+只有在保证数据完整性和安全性的情况下，才能将现实世界的价值可靠地带到数字领域。中心化各方自愿或不情愿地破坏这种保证，要么通过自己追求恶意行为，要么通过在外部攻击的情况下设置单点故障。想一想：如果只有一家公司管理用户的帐户余额，则没有什么可以阻止该组织的员工篡改或意外删除它。没有安全机制可以超越组织作为中心方。
 
+‌
 
+只有建立了制衡系统，才能确保数据的完整性，而这正是区块链技术所提供的。区块链网络的主要优势在于它提供了高度的去中心化，描述了一个网络，该网络由各种单独的节点组成，这些节点共同管理一个共享状态：账户余额、智能合约代码、数据结构等等。
 
-![](../../.gitbook/assets/image%20%285%29.png)
+‌
 
-When a user sends a transaction with the due amount of gas to the network, these transactions are formed into a _block_ — chunks of transactions that are validated as a unit. Each block has a certain gas limit, so there is a cap on the number of operations within a block. 
+交易是改变该状态的算法，或者简单地说，交易类似于处理价值、身份或其他关键流程的用户启动的操作。去中心化节点同意哪些交易是有效的，哪些不是——他们找到共识并惩罚恶意节点。
 
-_But why limit the throughput?_ When the gas limit is not capped at all, potentially immense amounts of data could be added or mutated in a short amount of time. Whenever a new node joins the network, it has to gather all this data , and this amount of data might be enormously high without a block gas limit in place, increasing the time and hardware requirements needed to set up a node. Already now, with tight block gas limits in place, it takes about 17 hours to set up a full Ethereum node.
+每个支持图灵完备性的区块链，即运行任何类型计算的能力，都有一个主要的漏洞：有人用永无止境的计算向网络发送垃圾邮件的可能性。此外，由于大多数网络都是公开可用的，因此区块链代表一种公共利益，正如_公地悲剧_所描述的那样，这通常会导致很多人利用这种方式获得某种利益，最终可能会导致有害的过度消费或资源本身的枯竭。
 
+‌
 
+为了防止这些拒绝服务攻击并限制过度使用，像以太坊这样的网络引入了交易费用：_gas_。Gas 使得 DoS 攻击在经济上非常不可行，因为交易需要提供随着交易复杂性而增加的 Gas 量。
 
-The increased hardware requirements make it infeasible for an individual to set up their own node — but the security and resiliency of a blockchain network against sybil attacks is directly tied to the number of individual nodes, and less nodes means a higher degree of centralisation, introducing higher security risks.
+![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/16b81e9b-3aa3-4ef5-81d6-b0a54f255b22/Untitled.png)
 
-_"For a blockchain to be decentralized, it’s crucially important for regular users to be able to run a node, and to have a culture where running nodes is a common activity."_
+当用户向网络发送带有应有天然气数量的交易时，这些交易会形成一个_区块_ ——作为一个单元进行验证的交易块。每个区块都有一定的gas限制，因此区块内的操作次数是有上限的。
 
- _— Vitalik Buterin in_ [_The Limits to Blockchain Scalability_](https://vitalik.ca/general/2021/05/23/scaling.html)
+‌
 
-These observations precisely render the edges of what we call the _scalability trilemma,_ meaning that blockchain networks __can only be sufficiently performant in two of the following three dimensions: scalability, security, decentralisation.
+\*但是为什么要限制吞吐量呢？\*当 gas 限制根本没有上限时，可能会在短时间内添加或改变大量数据。每当一个新节点加入网络时，它都必须收集所有这些数据，如果没有适当的区块 gas 限制，这个数据量可能会非常高，从而增加了设置节点所需的时间和硬件要求。现在，有了严格的区块gas限制，建立一个完整的以太坊节点大约需要17个小时。
 
+‌
 
+增加的硬件要求使得个人建立自己的节点变得不可行——但是区块链网络抵御女巫攻击的安全性和弹性与单个节点的数量直接相关，更少的节点意味着更高的集中度，引入更高的安全风险。
 
-![](../../.gitbook/assets/image%20%289%29.png)
+‌
 
-The quest for blockchain scalability always involves the challenge of trying to overcome these limitations and break out of this triangle. In Ethereum’s case,[ Vitalik Buterin describes one solution to leave these limitations behind: Sharding](https://vitalik.ca/general/2021/04/07/sharding.html).
+_“对于去中心化的区块链，对于普通用户来说，能够运行节点并拥有运行节点是一种常见的活动，这至关重要。”_
 
-Sharding: The good, the bad and the ugly
+‌
 
-The idea of sharding is nothing specific to blockchain — database systems commonly use this type of horizontal scaling. The main thought behind this strategy is to split up the state of a blockchain into multiple smaller chunks and distribute them across nodes. The state is thus spread across multiple individual shard chains, while a central beacon chain takes care of coordinating and orchestrating these shard chains. 
+— _维塔利克·巴特林中_[_的限制Blockchain可扩展性_](https://vitalik.ca/general/2021/05/23/scaling.html)
 
+‌
 
+这些观察准确地呈现了我们所说的_可扩展性三难困境_的边缘，这意味着区块链网络只能在以下三个维度中的两个维度上具有足够的性能：可扩展性、安全性、去中心化。\*\*
 
-  
+![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/2927910e-d2d2-471e-b435-eb31b1bc5c6f/Untitled.png)
 
+对区块链可扩展性的追求总是涉及试图克服这些限制并打破这个三角形的挑战。在以太坊的案例中，[Vitalik Buterin 描述了一种摆脱这些限制的解决方案：分片](https://vitalik.ca/general/2021/04/07/sharding.html)。
 
-![](../../.gitbook/assets/image%20%284%29.png)
+‌
 
-n the case of sharding, each node has to take care of two things: keeping track of one particular shard-chain and also following the main beacon chain. This requirement introduces a hard limit on how far sharding can increase scalability: If shards are too big, nodes can no longer process individual shards, and if there are too many shards, nodes can no longer process the beacon chain. 
+### 分片：好的、坏的和丑陋的
 
-Precisely due to this reason, [Vitalik Buterin has stated that only a combination of sharding with other scaling strategies - especially layer 2 solutions like rollups - will guarantee a sufficient level of throughput in the long term](https://ethereum-magicians.org/t/a-rollup-centric-ethereum-roadmap/4698). In light of the enormous complexity that the implementation of sharding demands \(as can be seen by looking at Ethereum’s cumbersome road to ETH 2.0\), this is a quite sobering thought on the efficiency of sharding, especially when considering that it introduces new risks for a network.
+‌
 
-One of these risks is the requirement of a minimum number of participants. A non-sharded blockchain can always run as long as there is only one active node, but in a sharded blockchain network no single node can manage all the state of the blockchain alone. Vitalik Buterin gives a more detailed overview of this problem in[ this blog post](https://vitalik.ca/general/2021/05/23/scaling.html), but essentially the risk lies in a sudden drop of network participants \(due to outages or coordinated malicious behaviour\) below this threshold — in such a case, the integrity of the whole network is in danger.
+分片的想法并不是区块链特有的——数据库系统通常使用这种类型的水平扩展。该策略背后的主要思想是将区块链的状态分成多个较小的块并将它们分布在节点之间。因此，状态分布在多个单独的分片链上，而中央信标链负责协调和编排这些分片链。
 
-But the main problem of sharding lies beyond these limits and risks: The reason why Flow has decided against sharding as a solution to the scalability problem is that **sharding introduces additional overhead, complexity and impedes ACID-compliant transactions and composability**. 
+![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/1b0440f6-b31a-4e1e-9681-49794ae67a2b/Untitled.png)
 
-To understand this point, it’s important to keep in mind that one of the great catalysts of innovation is composability: The idea that an application can build on top of an already existing application, or use some of its functionality. One common use case is the import of standardised interfaces \(e.g. ERC-20\) from other contracts, freeing developers from re-inventing the wheel over and over again; or the trading of fungible tokens across multiple smart contracts. 
+在分片的情况下，每个节点必须处理两件事：跟踪一个特定的分片链以及跟踪主信标链。这个要求对分片可以在多大程度上增加可扩展性引入了硬性限制：如果分片太大，节点不能再处理单个分片，如果分片太多，节点不能再处理信标链。
 
-In a non-sharded blockchain, these interactions across different smart contracts are straightforward, since they all live in one single state space. A transaction can easily be atomic, consistent, isolated and durable \(ACID\). 
+‌
 
+正是由于这个原因，[Vitalik Buterin 表示，只有将分片与其他扩展策略相结合——尤其是像汇总这样的第 2 层解决方案——才能长期保证足够的吞吐量水平](https://ethereum-magicians.org/t/a-rollup-centric-ethereum-roadmap/4698)。鉴于分片的实施需要巨大的复杂性（通过查看以太坊通往 ETH 2.0 的繁琐之路可以看出），这是对分片效率的一个相当发人深省的想法，特别是考虑到它为一个网络。
 
+‌
 
-On a sharded blockchain however, the external smart contract called might live in another state-space, on another shard, requiring complex lockup or escrow schemes because information on any particular shard may change before the transaction ends. What used to be one single, simple, transaction can balloon into ten or twenty cross-shard interactions, with each of these transactions running fragile asynchronous code. At the same time, cross-shard communication introduces additional latency that might nullify the added throughput of the scalability effect in the first place.
+这些风险之一是要求最少数量的参与者。只要只有一个活动节点，非分片区块链始终可以运行，但在分片区块链网络中，没有一个节点可以单独管理区块链的所有状态。Vitalik Buterin 在[这篇博文中](https://vitalik.ca/general/2021/05/23/scaling.html)对这个问题进行了更详细的概述，但本质上风险在于网络参与者突然下降（由于中断或协调的恶意行为）低于此阈值 - 在这种情况下，整体的完整性网络有危险。
 
-This shows that **sharding increases complexity for application developers, impacts user experience and makes ACID-compliant transactions hard to implement**. In a place that’s all about value and where confidence about the outcome of a transaction is key, this poses a huge anti-pattern, just like the[ use of arbitrarily mutable data structures for digital assets of value](https://www.onflow.org/post/flow-blockchain-cadence-programming-language-resources-assets). Because of these limitations, risks and anti-patterns introduced, sharding is not the ideal solution to scale blockchain networks to mass global adoption.
+‌
 
+但是分片的主要问题超出了这些限制和风险： Flow 决定不将分片作为可扩展性问题的解决方案的原因是**分片引入了额外的开销、复杂性并阻碍了符合 ACID 的事务和可组合性**。
 
+‌
 
-#### The problems with rollups
+要理解这一点，重要的是要记住创新的重要催化剂之一是可组合性：应用程序可以构建在现有应用程序之上，或使用其某些功能的想法。一个常见的用例是从其他合约中导入标准化接口（例如 ERC-20），让开发人员免于一遍又一遍地重新发明轮子；或跨多个智能合约的可替代代币交易。
 
-Rollups are part of a more general scalability strategy grouped under the broader term of _layer 2_ solutions. The philosophy behind all layer 2 solutions is to increase the throughput of a blockchain network by running computations off-chain \(off of the main chain, that is\), actively decreasing load on the actual protocol \(layer 1\) and only commit crucial state updates to it in regular intervals. 
+‌
 
-![](../../.gitbook/assets/image%20%286%29.png)
+在非分片区块链中，这些跨不同智能合约的交互很简单，因为它们都存在于一个单一的状态空间中。事务可以轻松实现原子性、一致性、隔离性和持久性 \(ACID\)。
 
+然而，在分片区块链上，被调用的外部智能合约可能存在于另一个状态空间、另一个分片上，需要复杂的锁定或托管方案，因为任何特定分片上的信息可能会在交易结束前发生变化。曾经是一个单一的简单事务，现在可以扩展为 10 或 20 个跨分片交互，每个事务都运行脆弱的异步代码。同时，跨分片通信引入了额外的延迟，这可能首先使可扩展性效应的额外吞吐量无效。
 
+‌
 
-Besides rollups, there are also the layer 2 concepts of state channels, plasmas, sidechains and some hybrid solutions that combine various ideas of these types. This article focuses mostly on rollups, since they are the most recent and most promising development in the overall space of layer 2 solutions. 
+这表明**分片会增加应用程序开发人员的复杂性，影响用户体验并使符合 ACID 的事务难以实现**。在一个完全关乎价值且对交易结果的信心至关重要的地方，这构成了一个巨大的反模式，就像[对有价值的数字资产使用任意可变的数据结构一样](https://www.onflow.org/post/flow-blockchain-cadence-programming-language-resources-assets)。由于引入了这些限制、风险和反模式，分片并不是将区块链网络扩展到大规模全球采用的理想解决方案。
 
-Rollups, like all layer 2 solutions, have one big challenge to tackle: How can transactions be secured off-chain, and how can their integrity be validated when committing back to the base chain? 
+Rollup **的问题**
 
-Optimistic rollups try to achieve this by heavily relying on game-theory: When the off-chain transactions are committed back to the main chain, anyone can challenge the outcomes of these transactions before they are finally committed; zk-rollups rely on complex mathematical proofs known as zero-knowledge proofs, which implicitly guarantee the integrity of the computations. The inner workings of both are highly non-trivial and fairly hard to grasp —Vitalik Buterin’s[ “An Incomplete Guide to Rollups”](https://vitalik.ca/general/2021/01/05/rollup.html) is a great starting point for those longing for more in-depth details. 
+‌
 
+Rollup 是更广泛的可扩展性策略的一部分，归入更广泛的_第 2 层_解决方案术语。所有第 2 层解决方案背后的理念是通过在链外（即主链外）运行计算来增加区块链网络的吞吐量，主动减少实际协议（第 1 层）的负载并仅提交关键状态更新定期给它。
 
+![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/86d25e4a-1731-4e7a-a57a-1742067434dc/Untitled.png)
 
-Rollups are a new phenomenon, and the foundation they are built on is — especially in the case of zk-rollups — a whole field still needing to be explored and defined. This observation renders the first problem with rollups in general: Taking transactions from the secure environment of the main chain and relying on mechanisms that still need to be battle-tested at large scale introduces great technological risks for assets deployed on these solutions. 
+除了 Rollup 之外，还有状态通道、等离子体、侧链和一些结合了这些类型的各种想法的混合解决方案的第 2 层概念。本文主要关注Rollup，因为它们是第 2 层解决方案整体空间中最新和最有前途的发展。
 
-_"It’s new technology, it’s crazy technology, it’s admittedly scary technology."_ 
+‌
 
-_—Vitalik Buterin_ [_on zero knowledge proofs_](https://youtu.be/UuMOQAVpI2c?t=846)
+与所有第 2 层解决方案一样，Rollup 面临一个巨大的挑战：如何在链外保护交易，以及在提交回基础链时如何验证其完整性？
 
-And while they do certainly help to enable high throughput paired with low transaction fees, **rollups dramatically increase the engineering overhead and introduce complexity for developers and end-users alike**, possibly nullifying the technical scalability factors in the long-term. y
+‌
 
+Optimistic Rollup 试图通过严重依赖博弈论来实现这一点：当链下交易提交回主链时，任何人都可以在这些交易最终提交之前挑战这些交易的结果；zk-rollups 依赖于称为零知识证明的复杂数学证明，它隐含地保证了计算的完整性。两者的内部运作都非常重要且难以掌握——Vitalik Buterin 的[“不完整的汇总指南”](https://vitalik.ca/general/2021/01/05/rollup.html)对于那些渴望更深入细节的人来说是一个很好的起点。
 
+‌
 
-There’s a variety of layer 2 solutions out there, and developers have to actively change their codebase for every single layer 2 solution they want their application to support. These changes are not merely done by adding a few lines of code — most zk-rollups require developers to learn a special programming language \(e.g. Cairo for StarkWare or Zinc for zkSync\) and deploy separate versions of the application’s smart contracts in that language. Learning those languages or finding talent for these niche topics is a lengthy process that has to be repeated for every new solution supported.
+Rollup 是一种新现象，它们的基础是——尤其是在 zk-rollup 的情况下——整个领域仍然需要探索和定义。这一观察结果呈现了Rollup的第一个问题：从主链的安全环境中获取交易并依赖仍需要大规模实战测试的机制，会给部署在这些解决方案上的资产带来巨大的技术风险。
 
-This added complexity in development does not only increase the time to market and the possibility of fatal errors, but also inevitably spills over to end-users, since they need to be actively aware of the technicalities: Only if they research on which layer 2 solution their favourite application is deployed, they can start using it. 
+‌
 
-Furthermore, layer 2 solutions add an additional step to the onboarding process, increasing the friction and excluding users who are less tech-savvy. For example, in order to use solutions on zkSync, users not only have to first set up and fund an account on Ethereum, but then also commit an amount to zkSync’s wallet; this process repeats in reverse when wanting to withdraw funds. 
+_“这是新技术，是疯狂的技术，无可否认是可怕的技术。”_
 
-Speaking of layer 2 off-ramps: in the case of optimistic rollups, users need to wait a certain amount of time \(in most cases approximately one week\) before they can access their withdrawn funds — this limit is imposed by the challenging-mechanism of optimistic rollups. In a fast-paced environment where users expect actions to resolve immediately, this is a huge blocker for mass-adoption of these solutions.
+‌
 
-In summary, layer 2 results in a fragmented ecosystem whose complexity is pushed to an almost unmanageable degree, vastly increasing the time and resources both engineers and end-users have to invest in order to build or use blockchain-enabled applications— it’s an avenue that promotes the exact opposite of what is needed for blockchain mass adoption. In order to provide great scalability in combination with good user experience, ease-of-development and security, a fundamental paradigm shift is inevitable. 
+* _Vitalik Buterin_[_零知识证明_](https://youtu.be/UuMOQAVpI2c?t=846)
 
-_Enter: Flow’s multi-node architecture._
+虽然它们确实有助于实现高吞吐量和低交易费用，但Rollup**显着增加了工程开销，并为开发人员和最终用户等引入了复杂**性，从长远来看，可能会抵消技术可扩展性因素。
 
-\_\_
+‌
 
-#### Flow’s new paradigm: Pipelining with specialised node types
+有各种各样的第 2 层解决方案，开发人员必须为他们希望应用程序支持的每个第 2 层解决方案积极更改他们的代码库。这些更改不仅仅是通过添加几行代码来完成的——大多数 zk-rollup 要求开发人员学习一种特殊的编程语言（例如用于 StarkWare 的 Cairo 或用于 zkSync 的 Zinc）并以该语言部署应用程序智能合约的单独版本。学习这些语言或为这些利基主题寻找人才是一个漫长的过程，必须为每个支持的新解决方案重复这个过程。
 
-Flow’s multi-node architecture provides higher levels of throughput and decentralisation than existing solutions, while preserving ease of development, user experience and digital asset security — without relying on sharding or layer 2 solutions. These features needed a fundamental change in the architectural paradigm of the protocol: Instead of horizontal scaling, Flow leverages vertical division of labor, a process also referred to as **pipelining**.
+‌
 
-Pipelining builds on the same idea that Henry Ford had in the early years of the nineteenth century at his automobile plant at Highland Park, inventing a concept that laid the foundation of global consumer-scale production: _Fordism_. It’s secret to success was the division of labor along a standardised pipeline — when one worker didn’t have to assemble all parts of an automobile, but rather only focus on one specific task, they could specialise deeply and the requirements that this worker had to bring to the table significantly dropped. 
+这种增加的开发复杂性不仅会增加上市时间和出现致命错误的可能性，而且不可避免地会波及到最终用户，因为他们需要积极了解技术细节：只有当他们研究哪种第 2 层解决方案时他们最喜欢的应用程序已部署，他们可以开始使用它。
 
-In this analogy, networks like Ethereum operate as if one worker was to build an entire car: Every node has to do the combined labor of consensus and computation. In this regard, sharding is merely an illusion of divisional labor: While every node has only to compute a part of the shared state, they are still responsible for each running every single computation of this block and participating in consensus.
+‌
 
-Flow’s multi-node architecture, in contrast, can be thought of as a pipeline that allows high degrees of specialisation for each individual node type, each focussing on one specific task — jointly, this pipeline can overcome the trilemma of scalability. 
+此外，第 2 层解决方案为入职流程增加了一个额外的步骤，增加了摩擦并排除了不太精通技术的用户。例如，为了在 zkSync 上使用解决方案，用户不仅必须首先在以太坊上设置和注资一个帐户，然后还要向 zkSync 的钱包提交一笔款项；当想要提取资金时，这个过程会反向重复。
 
-Each transaction that is sent to the network via an access node is first put into batches, so called collections, by **collector nodes**. These collector nodes are responsible for data availability; each well-formed transaction is stored on one of these collector nodes until it is included into a block. 
+‌
 
-Collections are formed into blocks by **consensus nodes**. These nodes take on the subjective task of ordering ****transactions. While arguably being the most important node type in regards to protocol security, this node type is particularly light on resource usage. Because they only request the transaction IDs from collector nodes — and not the whole code of the transaction — data throughput requirements can be held to a minimum. 
+说到 Layer 2 off-ramps：在optimistic rollups的情况下，用户需要等待一定的时间（在大多数情况下大约一周）才能访问他们提取的资金——这个限制是由挑战机制强加在optimistic rollups上的。在用户期望操作立即解决的快节奏环境中，这是大规模采用这些解决方案的巨大障碍。
 
-**Execution nodes** request the full transaction code from the collector nodes after finding out from the consensus nodes which block to run next. These nodes are the most highly scaled of all node types and are dedicated to running the computations of the block as fast as possible. The smaller number of nodes decreases the redundancy of work, speeding up the time of these computations. Because they are closely looked after by verification nodes, this smaller number has no effect on the overall decentralisation of the protocol as a whole. Also, fewer high-performance nodes means less energy consumed, and thus less harm done to the environment. 
+‌
 
-**Verification nodes** are the watchful eye that closely observes every step of the execution nodes. After the subjective task of ordering the transactions \(consensus nodes\), the transactions themselves are deterministic and their outcome can be objectively known. Each of the many verification nodes now assesses one sub-part of the overall block computations. If one step is leading to a wrong result, the verification node triggers an alarm, possibly initialising a slashing challenge \(the process where harmful nodes are deducted a certain amount of their stake\). Just like the consensus nodes, the hardware requirements for verification are moderate, motivating users to run their own node.
+总之，第 2 层导致了一个支离破碎的生态系统，其复杂性被推到了几乎无法管理的程度，大大增加了工程师和最终用户为构建或使用支持区块链的应用程序而必须投资的时间和资源——这是一条途径促进与区块链大规模采用所需的完全相反。为了提供出色的可扩展性以及良好的用户体验、易于开发和安全性，基本的范式转变是不可避免的。
 
-After the computational results of the execution nodes have been thoroughly checked by the verification nodes, the block is sealed by a consensus node. At this point in time, one can be confident in the outcome of a transaction that was included in the block.
+‌
 
-Just like the separation of power in democratic republics, execution nodes, consensus nodes and verification nodes create a **system of checks and balances**, where the few high scale execution nodes are closely observed by a large number of verification nodes, while consensus nodes seal the final transaction. 
+进_入：Flow 的多节点架构。_
 
-In essence, Flow’s specialised node types greatly increase the motivation of network participants to run a node due to lower hardware requirements, thus increasing decentralisation and security of the whole network. This makes participation in blockchain network more accessible and less resource intensive, while still having few performant machines to execute computations as fast as possible — all while keeping the complexity abstracted into the protocol. This means that good end-user experience is preserved while developers can focus on shipping their application fast. 
+### **Flow 的新范式：使用专门的节点类型进行流水线操作**
 
-Flow’s multi-node architecture is the blueprint for future-proof, consumer-scale blockchain protocols.
+‌
+
+Flow 的多节点架构提供比现有解决方案更高水平的吞吐量和去中心化，同时保持易于开发、用户体验和数字资产安全——无需依赖分片或第 2 层解决方案。这些功能需要对协议的架构范式进行根本性的改变：Flow 不是水平扩展，而是利用垂直分工，这个过程也称为**流水线**。
+
+‌
+
+流水线建立在亨利福特在 19 世纪早期在他位于高地公园的汽车厂的想法的基础上，发明了一个概念，为全球消费级生产奠定了基础：_福特主义_。成功的秘诀在于标准化流水线上的分工——当一名工人不必组装汽车的所有部件，而只专注于一项特定任务时，他们可以深入专业化以及该工人必须满足的要求门槛明显下降。
+
+‌
+
+在这个类比中，像以太坊这样的网络就像一个工人要建造一整辆汽车一样运行：每个节点都必须完成共识和计算的联合工作。在这方面，分片只是一种分工的错觉：虽然每个节点只需要计算一部分共享状态，但它们仍然负责每个节点运行该块的每一次计算并参与共识。
+
+‌
+
+相比之下，Flow 的多节点架构可以被认为是一个管道，它允许每个节点类型的高度专业化，每个节点都专注于一个特定的任务——联合起来，这个管道可以克服可扩展性的三难困境。
+
+‌
+
+通过访问节点发送到网络的每笔交易首先由**收集器节点**分批进行，即所谓的集合。这些收集器节点负责数据的可用性；每个格式良好的交易都存储在这些收集器节点之一上，直到它被包含到一个块中。
+
+‌
+
+集合由**共识节点**形成块。这些节点承担了对交易进行排序的主观任务。虽然可以说是在协议安全方面最重要的节点类型，但这种节点类型在资源使用方面特别少。因为它们只从收集器节点请求事务 ID——而不是事务的整个代码——数据吞吐量要求可以保持在最低限度。\*\*\*\*
+
+‌
+
+**执行节点**从共识节点中找出下一个要运行的区块后，向收集器**节点**请求完整的交易代码。这些节点是所有节点类型中扩展性最高的，专用于尽可能快地运行块的计算。较少的节点减少了工作的冗余，加快了这些计算的时间。因为它们受到验证节点的密切关注，这个较小的数字对整个协议的整体去中心化没有影响。此外，更少的高性能节点意味着更少的能源消耗，从而减少对环境的危害。
+
+‌
+
+**验证节点**是密切观察执行节点每一步的观察者。在对交易（共识节点）进行排序的主观任务之后，交易本身是确定性的，并且可以客观地知道其结果。许多验证节点中的每一个现在都评估整个块计算的一个子部分。如果一个步骤导致错误的结果，验证节点会触发警报，可能会初始化一个slashing Challenge（有害节点被扣除一定数量的股份的过程）。就像共识节点一样，验证的硬件要求适中，激励用户运行自己的节点。
+
+‌
+
+执行节点的计算结果经过验证节点彻底检查后，由共识节点密封区块。此时，人们可以对包含在区块中的交易的结果充满信心。
+
+‌
+
+就像民主共和国的权力分立一样，执行节点、共识节点和验证节点创建了一个\*\*制衡系统，\*\*少数几个大规模的执行节点被大量的验证节点密切关注，而共识节点则密封最终交易。
+
+‌
+
+本质上，Flow 的专用节点类型由于较低的硬件要求而大大增加了网络参与者运行节点的动力，从而增加了整个网络的去中心化和安全性。这使得区块链网络的参与更容易，资源密集度更低，同时仍然只有很少的高性能机器来尽可能快地执行计算——同时将复杂性抽象到协议中。这意味着良好的最终用户体验得以保留，而开发人员可以专注于快速交付他们的应用程序。
+
+‌
+
+Flow 的多节点架构是面向未来的消费级区块链协议的蓝图。
 
 
 
