@@ -7,6 +7,10 @@
 * [Flow 区块链架构](flow-blockchain/flow-qu-kuai-lian-jia-gou.md)
 * [Flow 开发工具](flow-blockchain/flow-kai-fa-gong-ju.md)
 
+***
+
+* [技术文章](ji-shu-wen-zhang.md)
+
 ## SDK
 
 * [Flow JS  SDK 详解](sdk/flow-js-sdk-xiang-jie/README.md)
@@ -39,7 +43,7 @@
   * [如何在 Flow主网创建一个Account ？](cadence/flow-kai-fa-gong-ju-jian-jie/ru-he-zai-flow-zhu-wang-chuang-jian-yi-ge-account.md)
   * [解构Flow：可百万级扩容的多节点架构](cadence/flow-kai-fa-gong-ju-jian-jie/jie-gou-flow-ke-bai-wan-ji-kuo-rong-de-duo-jie-dian-jia-gou.md)
 
-## projects <a id="project"></a>
+## projects <a href="project" id="project"></a>
 
 * [Flow 生态项目](project/she-qu-can-kao-zi-yuan/README.md)
   * [Mynft](project/she-qu-can-kao-zi-yuan/mynft.md)
@@ -52,17 +56,16 @@
   * [NBA Top Shot](project/she-qu-can-kao-zi-yuan/nba-top-shot.md)
   * [ViV3](project/she-qu-can-kao-zi-yuan/viv3.md)
 
-## feedback <a id="she-qu-fan-kui"></a>
+## feedback <a href="she-qu-fan-kui" id="she-qu-fan-kui"></a>
 
 * [常见问题](she-qu-fan-kui/chang-jian-wen-ti.md)
 
-## Other Resources <a id="qi-ta-zi-yuan"></a>
+## Other Resources <a href="qi-ta-zi-yuan" id="qi-ta-zi-yuan"></a>
 
-* [官方文档](https://docs.onflow.org/)
-* [flowverse 生态一览](https://www.flowverse.co/)
+* [官方文档](https://docs.onflow.org)
+* [flowverse 生态一览](https://www.flowverse.co)
 
----
+***
 
 * [FlowFans](https://github.com/FlowFans)
 * [Awesome Flow](https://github.com/FlowFans/awesome-flow)
-
