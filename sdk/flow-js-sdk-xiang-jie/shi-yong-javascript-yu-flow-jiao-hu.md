@@ -1,10 +1,10 @@
 # 使用 Javascript 与 Flow 交互
 
-_作者：_   [_@Caos_](https://github.com/caosbad)\_\_
+_作者：   _[_@Caos_](https://github.com/caosbad)__
 
-\_\_
+__
 
-本文假设读者是熟悉 JavaScript 和 [React](https://reactjs.org/) 的开发者，对 [Flow](https://www.onflow.org/) 有着一定的了解，或者熟悉 Flow 智能合约语言 [Cadence](https://docs.onflow.org/tutorial/cadence/00-introduction) 相关的概念。
+本文假设读者是熟悉 JavaScript 和 [React](https://reactjs.org) 的开发者，对 [Flow](https://www.onflow.org) 有着一定的了解，或者熟悉 Flow 智能合约语言 [Cadence](https://docs.onflow.org/tutorial/cadence/00-introduction) 相关的概念。
 
 我们将通过本文熟悉并搭建本地开发环境，使用 JavaScript 根据现有的 [JS-SDK](https://github.com/onflow/flow-js-sdk) 完成对链的调用与交互。
 
@@ -23,7 +23,7 @@ _作者：_   [_@Caos_](https://github.com/caosbad)\_\_
 
 > 为了方便读者理解，我们直接使用 flow-js-sdk 官方提供的代码库作为基础，并针对原有的示例略有一些调整，请参照 fork 的仓库 [react-fcl-demo](https://github.com/caosbad/react-fcl-demo) 来完成部署和演示
 
-```text
+```
 git clone https://github.com/caosbad/react-fcl-demo.git 
 cd react-fcl-demo
 yarn 
@@ -41,7 +41,7 @@ yarn
 
 模拟器是帮助我们在本机启动一个本地的 Flow 网络，类似于以太坊的 ganache，模拟器的下载安装步骤可以参考这里 [instructions](https://github.com/onflow/flow/blob/master/docs/cli.md#installation).
 
-```text
+```
 // Linux and macOS
 sh -ci "$(curl -fsSL https://storage.googleapis.com/flow-cli/install.sh)"
 
@@ -49,14 +49,14 @@ sh -ci "$(curl -fsSL https://storage.googleapis.com/flow-cli/install.sh)"
 iex "& { $(irm 'https://storage.googleapis.com/flow-cli/install.ps1') }"
 ```
 
-```text
+```
 // --init 参数是在第一次启动的时候添加，如果已经初始化过，就直接执行 start 命令
 flow emulator start --init 
 ```
 
 在示例项目的目录里执行 init 命令后，我们会发现目录下多出了一个 `flow.json` 文件，类似于以下的结构：
 
-```text
+```
 {
     "accounts": {
         "service": {
@@ -71,7 +71,7 @@ flow emulator start --init
 
 模拟器启动之后你会看到启动成功的日志，模拟器提供了 gRPC 和 http 通信的接口
 
-[![&#x6A21;&#x62DF;&#x5668;](https://camo.githubusercontent.com/a33eb27241c05c9554df5e0c77a5d28e2a0d273ef7956c65971d8dde1008c010/68747470733a2f2f7472656c6c6f2d6174746163686d656e74732e73332e616d617a6f6e6177732e636f6d2f3566636363353566396334373738373539326166366239362f363334783137332f31363966316239366532316164323535333333316561643839653635633735612f696d6167652e706e67)](https://camo.githubusercontent.com/a33eb27241c05c9554df5e0c77a5d28e2a0d273ef7956c65971d8dde1008c010/68747470733a2f2f7472656c6c6f2d6174746163686d656e74732e73332e616d617a6f6e6177732e636f6d2f3566636363353566396334373738373539326166366239362f363334783137332f31363966316239366532316164323535333333316561643839653635633735612f696d6167652e706e67)
+[![模拟器](https://camo.githubusercontent.com/a33eb27241c05c9554df5e0c77a5d28e2a0d273ef7956c65971d8dde1008c010/68747470733a2f2f7472656c6c6f2d6174746163686d656e74732e73332e616d617a6f6e6177732e636f6d2f3566636363353566396334373738373539326166366239362f363334783137332f31363966316239366532316164323535333333316561643839653635633735612f696d6167652e706e67)](https://camo.githubusercontent.com/a33eb27241c05c9554df5e0c77a5d28e2a0d273ef7956c65971d8dde1008c010/68747470733a2f2f7472656c6c6f2d6174746163686d656e74732e73332e616d617a6f6e6177732e636f6d2f3566636363353566396334373738373539326166366239362f363334783137332f31363966316239366532316164323535333333316561643839653635633735612f696d6167652e706e67)
 
 接下来在新的终端启动 Dev wallet
 
@@ -91,7 +91,7 @@ flow emulator start --init
 
 #### 启动示例项目
 
-```text
+```
 yarn start
 ```
 
@@ -99,7 +99,7 @@ yarn start
 
 **获取最新区块**
 
-```text
+```
 // src/demo/GetLatestBlock.tsx
 import { decode, send, getLatestBlock } from "@onflow/fcl"
 
@@ -117,7 +117,7 @@ const GetLatestBlock = () => {
   }
 ```
 
-```text
+```
 // 返回结果
 {
   "id": "de37aabaf1ce314da4a6e2189d9584b71a7f302844b4ed5fb1ca3042afbad3d0", // 区块的 id
@@ -152,7 +152,7 @@ const GetLatestBlock = () => {
 
 这里需要我们输入用户地址来完成查询，
 
-```text
+```
 // src/demo/GetAccount.tsx
   const runGetAccount = async (event: any) => {
     const response = await fcl.send([
@@ -163,7 +163,7 @@ const GetLatestBlock = () => {
   }
 ```
 
-```text
+```
 {
   "address": "01cf0e2f2f715450",      // 地址
   "balance": 0,
@@ -185,7 +185,7 @@ const GetLatestBlock = () => {
 
 执行脚本我们可以理解为是一种无需用户授权的查询操作
 
-```text
+```
 // src/demo/ScriptOne.tsx
 
 const scriptOne = `\
@@ -206,7 +206,7 @@ const runScript = async (event: any) => {
 
 这里我们可以看到在智能合约里可以定义复杂的数据结构， 并且通过 typescript 的类型进行数据的解构，能够将复杂的数据与前端的应用层友好的关联。
 
-```text
+```
 // src/model/Point.ts 这里定义了结构数据的类型
 class Point {
   public x: number;
@@ -259,7 +259,7 @@ fcl.config()
 * 回调函数中的 data 要指定对应的类型，也就是负责解构的 Point 类型
 * 解构的类型，需要有自己的 constructor 函数
 
-```text
+```
 // 输出结果
 Point 0
 {
@@ -289,7 +289,7 @@ Point 1
 
 保存并应用之后，Dev wallet 会将 profile 的信息存入数据库中，订阅函数将会执行回调，将 user 的信息作为参数传递回来
 
-```text
+```
 // src/demo/Authenticate.tsx
 const signInOrOut = async (event: any) => {
     event.preventDefault()
@@ -307,7 +307,7 @@ fcl.currentUser().subscribe((user: any) => setUser({...user})) // fcl.currentUse
 
 对应用开发者来说，fcl 帮助我们管理用户的登录状态和所需要的授权操作，会在下文发送交易的章节详述。
 
-```text
+```
 // user 返回值
 {
   "VERSION": "0.2.0",
@@ -343,7 +343,7 @@ Dev wallet 会将 profile 的数据存储到 GraphQL 的数据服务中，供第
 
 **发送交易**
 
-```text
+```
  // src/demo/SendTransaction.tsx
 
 const simpleTransaction = `
@@ -375,7 +375,7 @@ const { transactionId } = await fcl.send([
 
 与执行脚本不同的是，这里的 `transaction` 调用需要发起交易，相当于执行链上的交易操作，虽然这里只进执行了 log ，但仍需要指定交易发起者和费用支付者。
 
-```text
+```
 // 脚本运行成功的返回值
 {
   "status": 4,
@@ -391,7 +391,7 @@ const { transactionId } = await fcl.send([
 
 这里我们定义一个示例的合约，并声明一个公开可调用的函数来通过外部传入的参数触发合约的事件，这里并未对合约的变量进行改变
 
-```text
+```
 // src/demo/DeployContract.tsx
 // 需要部署的合约脚本，这里为了测试方便我添加了 access(all) 的访问权限声明
 const simpleContract = ` 
@@ -452,7 +452,7 @@ export async function Send(code: string, deployScript: string) {
 * `acct.contracts.add(name: "HelloWorld", code: code.decodeHex())` 其中 `add` 函数的 `name` 参数需要与合约脚本中声明的名称一致
 * 同样名字的合约在一个账户下只能有一个
 
-```text
+```
 // 部署合约返回值
 {
   "status": 4,
@@ -478,7 +478,7 @@ export async function Send(code: string, deployScript: string) {
 
 在界面上我们需要输入之前部署合约账户的地址，才能够成功的导入合约并调用其公开的函数，注意调用的交易体中（由 transaction 包裹，execute 中执行合约代码的调用），传入 massage 作为合约方法的参数
 
-```text
+```
 // src/demo/ScriptOne.tsx
 // 这里的 addr 是我们部署合约的地址
 const simpleTransaction = (address: string | null) => `\
@@ -516,7 +516,7 @@ const simpleTransaction = (address: string | null) => `\
   }
 ```
 
-```text
+```
 {
   "status": 4,
   "statusCode": 0,
@@ -544,4 +544,3 @@ const simpleTransaction = (address: string | null) => `\
 #### 最后
 
 现在我们已经熟悉了如何通过 fcl 与 flow 链的交互，我们已经具备了在 Flow 链上开发 DApp 的最小知识，接下来可以继续根据现有的 demo 做一些测试，或者深入探索有关 Dev wallet 、flow-sdk 或 Cadence 相关的代码与服务，相信会有更多的收获。
-

@@ -1,8 +1,8 @@
 # Flow JS-SDK 源码解析 —— 账号授权与签名
 
-_作者：_   [_@Caos_](https://github.com/caosbad)\_\_
+_作者：   _[_@Caos_](https://github.com/caosbad)__
 
-\_\_
+__
 
 在之前的文章里，我们熟悉了如何使用 Flow JS-SDK 完成一些针对 FLOW 链的简单用例，也熟悉了如何使用 [fcl](https://github.com/onflow/flow-js-sdk)完成数据的查询、合约部署，交易的发送。
 
@@ -12,7 +12,7 @@ _作者：_   [_@Caos_](https://github.com/caosbad)\_\_
 
 我们先从授权的操作开始，提供授权操作的源码位置在 current-user 的包中，我们看到 index 文件中包含了几个导出的函数：
 
-```text
+```
 // packages/fcl/src/current-user/index.js
 export const currentUser = () => {
   return {
@@ -27,7 +27,7 @@ export const currentUser = () => {
 
 其中 `authenticate` 函数中调用上初始化上下文的函数，同时定义了 `iframe` 的授权窗口交互的逻辑，允许第三方的开发者提供外部的授权服务界面，帮助用户方便的使用 FLOW
 
-```text
+```
 // packages/fcl/src/current-user/index.js
 
 async function authenticate() {
@@ -77,7 +77,7 @@ async function authenticate() {
 
 @onflow/util-actor 作为初始化并提供上下文工具的库起到了很关键的作用，我们先看上下文是如何初始化的
 
-```text
+```
 // packages/fcl/src/current-user/index.js
 import {spawn, send, INIT, SUBSCRIBE, UNSUBSCRIBE} from "@onflow/util-actor"
 
@@ -132,7 +132,7 @@ const HANDLERS = {
 
 那么上下文里存储的内容是什么呢？我们接着看 @onflow/util-actor 源码是怎么做的：
 
-```text
+```
 // packages/util-actor/src/index.js
 
 const root =
@@ -199,11 +199,11 @@ export const spawn = (fn, addr = null) => {
 
 这里的代码有点长，略做删减保留了 `ctx` 后面会用到的接口，这里我们看到代码用 `root.FCL_REGISTRY[addr]` 注册了一个全局唯一的对象，并初始化了默认字段 `ctx` 作为后续操作的上下文，传递给 `handler` 的接口
 
-[![&#x5168;&#x5C40;&#x7ED3;&#x6784;&#x5728;&#x6D4F;&#x89C8;&#x5668;&#x4E2D;](https://camo.githubusercontent.com/33ac80e196b9097eb04b7d48bd410dcae2ae9a9d2ffe367d677bc87c51c3dc88/68747470733a2f2f7472656c6c6f2d6174746163686d656e74732e73332e616d617a6f6e6177732e636f6d2f3561636561663131363463383661313566353935366364612f3566636363353566396334373738373539326166366239362f35613633616661353566303666346363336535323331666139636162613932302f696d6167652e706e67)](https://camo.githubusercontent.com/33ac80e196b9097eb04b7d48bd410dcae2ae9a9d2ffe367d677bc87c51c3dc88/68747470733a2f2f7472656c6c6f2d6174746163686d656e74732e73332e616d617a6f6e6177732e636f6d2f3561636561663131363463383661313566353935366364612f3566636363353566396334373738373539326166366239362f35613633616661353566303666346363336535323331666139636162613932302f696d6167652e706e67)
+[![全局结构在浏览器中](https://camo.githubusercontent.com/33ac80e196b9097eb04b7d48bd410dcae2ae9a9d2ffe367d677bc87c51c3dc88/68747470733a2f2f7472656c6c6f2d6174746163686d656e74732e73332e616d617a6f6e6177732e636f6d2f3561636561663131363463383661313566353935366364612f3566636363353566396334373738373539326166366239362f35613633616661353566303666346363336535323331666139636162613932302f696d6167652e706e67)](https://camo.githubusercontent.com/33ac80e196b9097eb04b7d48bd410dcae2ae9a9d2ffe367d677bc87c51c3dc88/68747470733a2f2f7472656c6c6f2d6174746163686d656e74732e73332e616d617a6f6e6177732e636f6d2f3561636561663131363463383661313566353935366364612f3566636363353566396334373738373539326166366239362f35613633616661353566303666346363336535323331666139636162613932302f696d6167652e706e67)
 
 这里除了初始化了全局的 `ctx` 数据结构之外，还通过 `fromHandlers` 函数，将 `handlers` 的处理函数启动了一个循环的监听，用 mailbox 完成消息的接收与发送。后面我们会看到 `letter` 数据，就是 `mailbox` 消息通信的数据封装，也在之前定义的 `handlers` 用到过。
 
-```text
+```
 // 将定义的处理函数进行封装，并注册监听
 const fromHandlers = (handlers = {}) => async ctx => {
   if (typeof handlers[INIT] === "function") await handlers[INIT](ctx)
@@ -233,7 +233,7 @@ const fromHandlers = (handlers = {}) => async ctx => {
 
 接下来是初始化第三方钱包的服务，这里用到了 `iframe` 和 `fcl` 之前的配置信息，这也是为什么我们需要在开发环境启动一个 local 的 dev-wallet 服务的原因，交易的签名和确认会通过 `iframe` 的形式渲染出钱包服务的界面，完成用户的登录或授权。
 
-```text
+```
 // 通过 iframe 的方式呼出授权界面
  const [$frame, unrender] = renderAuthnFrame({
  handshake: await config().get("challenge.handshake"), // 在 fcl 配置中配置的第三方授权服务地址，localhost 是依赖 dev-wallet 测试网依赖 blocto
@@ -293,7 +293,7 @@ export function renderFrame(src) {
 
 这个是为第三方钱包服务所准备的通信机制，通过 `message` 的方式让 iframe 之间互相通信，加载的第三方的钱包服务，可以在 iframe 提供的页面中实现自己的授权逻辑，将授权的获取的用户信息，通过事件的方式传递到上下文中。
 
-```text
+```
  // 定义响应函数
 const replyFn = async ({data}) => {
   if (data.type === CHALLENGE_CANCEL_EVENT || data.type === CANCEL_EVENT) { // 取消授权，关闭窗口，取消事件监听
@@ -313,7 +313,7 @@ const replyFn = async ({data}) => {
 
 这里使用了 `buildUser` 将返回的 data 信息构建成 current-user 所需要的用户信息，和授权相关的服务信息，我们用 local 环境的 dev-wallet 举例，在 config 中我们配置了授权的信息，同样也会在 currentUser 的信息中展示：
 
-```text
+```
 {
   "VERSION": "0.2.0",
   "addr": "01cf0e2f2f715450",
@@ -351,7 +351,7 @@ const replyFn = async ({data}) => {
 
 通过这两个配置，fcl 才能够在用户登录和发起签名操作的时候请求对应的授权接口，`buildUser` 中 通过 `fetchServices` 获得
 
-```text
+```
 // packages/fcl/src/current-user/build-user.js
 // 构建用户信息
 export async function buildUser(data) {
@@ -388,7 +388,7 @@ export async function buildUser(data) {
 
 这里就是直接清除掉客户端全局缓存的 `root.FCL_REGISTRY` 信息，同时调用上下文对象中的订阅方法，通知订阅者用户注销
 
-```text
+```
 function unauthenticate() {
   spawnCurrentUser()
   send(NAME, DEL_CURRENT_USER)
@@ -412,7 +412,7 @@ broadcast: (tag, data, opts = {}) => {
 
 这里实现了第三方托管类型的用户签名授权服务，将用户信息中定义的签名服务 `authz` 的信息转化为请求，需要签名的交易体作为 `signable` 参数传入，第三方授权服务返回签名后的交易信息和签名，完成托管服务的授权操作
 
-```text
+```
 async function authorization(account) {
   spawnCurrentUser()
   const user = await authenticate() // 获得当前登录用户信息
@@ -469,7 +469,7 @@ export async function execService(service, msg) {
 
 通过 subscribe 完成用户信息变动的监听
 
-```text
+```
 function subscribe(callback) {
   spawnCurrentUser()  // 初始化
   const EXIT = "@EXIT" // 定义退出条件
@@ -500,7 +500,7 @@ $subscribe$ 会为每个调用他的函数生成一个新的上下文，并添�
 
 snapshot 获取当前上下文对象中存储的用户信息，并返回
 
-```text
+```
 // current-user
 function snapshot() {
   spawnCurrentUser()
@@ -526,4 +526,3 @@ all: () => {
 这么设计的好处显而易见，降低普通用户的使用门槛，同时帮助第三方更好的提供链上账户的授权和与 DApp 功能业务整合的支持。
 
 当然还有非托管形式的签名方法，将会在后面的源码解析文章中详述，本文涉及到的源码和注释在 [github](https://github.com/caosbad/flow-js-sdk/tree/comm) 中你也可以使用 [github1s](https://github1s.com/caosbad/flow-js-sdk/tree/comm) 来查看。
-

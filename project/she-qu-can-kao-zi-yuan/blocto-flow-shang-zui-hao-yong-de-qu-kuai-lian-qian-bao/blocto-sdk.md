@@ -4,9 +4,9 @@
 
 
 
-![&#x901A;&#x8FC7;Blocto SDK &#x5B8C;&#x6210;&#x7528;&#x6237;&#x4E0E;&#x533A;&#x5757;&#x94FE;&#x7684;&#x53CB;&#x597D;&#x4EA4;&#x4E92;](../../../.gitbook/assets/screen-shot-2020-08-22-at-6.48.39-pm.png)
+![通过Blocto SDK 完成用户与区块链的友好交互](../../../.gitbook/assets/screen-shot-2020-08-22-at-6.48.39-pm.png)
 
-### 
+###
 
 ### 优势
 
@@ -26,7 +26,7 @@
 
 #### 免费增值模式
 
-与其他钱包sdk相比，免费增值模式成为可能，你可以为用户支付交易费用，以提供免费增值体验。他们不需要在试用dApp之前购买加密货币来支付费用。 
+与其他钱包sdk相比，免费增值模式成为可能，你可以为用户支付交易费用，以提供免费增值体验。他们不需要在试用dApp之前购买加密货币来支付费用。&#x20;
 
 
 
@@ -34,11 +34,11 @@
 
 使用Blocto的支付api轻松获得支付。用户可以轻松地使用信用卡或其他加密货币，如比特币、以太坊、波场、USDT等进行支付。一旦集成了Blocto SDK，您的用户可以通过Blocto应用程序轻松安全地管理他们的资产。您的dApp可以立即进入庞大的区块链生态系统。
 
-#### 
+####
 
 #### 支持多链多种SDK
 
-Blocto SDK支持流、以太坊、波场和未来会有更多的链。Blocto还帮助用户在不同的链上转换资产。可在不同语言和不同平台上使用。大多数钱包sdk只支持JavaScript。Blocto SDK有JavaScript、Swift \(iOS\)和Kotlin \(Android\)版本。
+Blocto SDK支持流、以太坊、波场和未来会有更多的链。Blocto还帮助用户在不同的链上转换资产。可在不同语言和不同平台上使用。大多数钱包sdk只支持JavaScript。Blocto SDK有JavaScript、Swift (iOS)和Kotlin (Android)版本。
 
 
 
@@ -60,7 +60,7 @@ $ npx create-react-app flow-hello-world
 
 在您刚刚创建的`flow-hello-world`文件夹中，安装此项目所需的依赖项。
 
-```text
+```
 $ yarn add @onflow/fcl
 $ yarn add styled-components
 ```
@@ -71,7 +71,7 @@ FCL正在进行大量的开发，并且版本并不总是向后兼容的。我�
 
 你可以启动项目，并访问地址在`http://localhost:3000`
 
-```text
+```
 $ yarn start
 ```
 
@@ -193,7 +193,7 @@ serviceWorker.unregister()
 
 1. 创建 `src/Authenticate.js`
 2. 添加组件 `src/App.js`
-3. 添加FCL的配置到 `src/index.js` 让 FCL 知道我们选择哪个钱包去使用。 
+3. 添加FCL的配置到 `src/index.js` 让 FCL 知道我们选择哪个钱包去使用。&#x20;
 
 {% tabs %}
 {% tab title="src/Authenticate.js" %}
@@ -451,13 +451,13 @@ export default App;
 
 你可以在这里找到完整的代码示例:
 
- [https://github.com/portto/flow-hello-world](https://github.com/portto/flow-hello-world)
+&#x20;[https://github.com/portto/flow-hello-world](https://github.com/portto/flow-hello-world)
 
 ## 登录和注册
 
-通过Flow Client Library \(FCL\)连接Blocto wallet
+通过Flow Client Library (FCL)连接Blocto wallet
 
-### 第一步，配置 FCL 
+### 第一步，配置 FCL&#x20;
 
 ```javascript
 import * as fcl from "@onflow/fcl"
@@ -497,7 +497,7 @@ fcl.unauthenticate()
 
 ## 签名交易
 
-通过Flow 客户端库\(FCL\)与Blocto钱包签署消息
+通过Flow 客户端库(FCL)与Blocto钱包签署消息
 
 ### 第一步，发送交易
 
@@ -543,14 +543,14 @@ fcl
 
 ## Flow 网络
 
-## 项目 Demo 
+## 项目 Demo&#x20;
 
 更多的集成示例可以在这里找到:
 
- [https://github.com/portto/fcl-demo](https://github.com/portto/fcl-demo)  
+&#x20;[https://github.com/portto/fcl-demo](https://github.com/portto/fcl-demo)\
 
 
-在线 demo: [http://fcl-demo.portto.io/](http://fcl-demo.portto.io/)
+在线 demo: [http://fcl-demo.portto.io/](http://fcl-demo.portto.io)
 
 {% hint style="success" %}
 demo 项目也可以演示了 本地 **Flow emulator** 和 **dev-wallet 的使用**
@@ -559,11 +559,10 @@ demo 项目也可以演示了 本地 **Flow emulator** 和 **dev-wallet 的使�
 ## 其他例子
 
 * **Flow FT创建**
-* **NFT 创建** 
+* **NFT 创建 **
 * **NFT 交易市场**
 * **Flow 稳定币 FUSD**
 
 {% embed url="https://berkeley-blockchain-demo.vercel.app/" %}
 
-\*\*\*\*
-
+****

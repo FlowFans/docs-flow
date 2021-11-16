@@ -18,7 +18,7 @@ description: '@Lsy  Flow 中文社区技术大使'
 
 ### 1. 启动项目
 
-```text
+```
 git clone https://github.com/onflow/fcl-dev-wallet.git
 cd fcl-dev-wallet
 cp .env.example .env.local
@@ -29,13 +29,13 @@ yarn install
 yarn dev
 ```
 
- 注**:**  您可以更改运行开发钱包的端口 `npm run dev -- -p 9999`
+&#x20;注**:**  您可以更改运行开发钱包的端口 `npm run dev -- -p 9999`
 
 #### 配置文件信息：
 
 {% tabs %}
 {% tab title=".env.local " %}
-```text
+```
 # FCL开发钱包需要知道如何与Flow模拟器交互
 # 因为 FCL开发钱包需要通过 Javascript 使用 FCL 与 emulator 进行交互
 # 所以设定 emulators grpc-http proxy， 一般不必修改
@@ -61,7 +61,7 @@ FCL 开发钱包被设计用于`0.0.68`或更高版本的 FCL。目前`fcl@0.0.6
 
 {% tabs %}
 {% tab title="config.js" %}
-```text
+```
 import * as fcl from "@onflow/fcl"
 
  
@@ -83,7 +83,7 @@ fcl.config()
 
 开启一个新的命令行窗口，在这个目录下运行以下命令启动模拟器:
 
-```text
+```
 flow emulator start
 ```
 
@@ -93,7 +93,7 @@ flow emulator start
 
 很容易使用这个FCL应用程序作为一个简单的应用程序，在开发期间与开发钱包进行交互: [https://github.com/orodio/harness](https://github.com/orodio/harness)
 
-```text
+```
 git clone https://github.com/orodio/harness.git
 
 cd harness
@@ -101,5 +101,4 @@ yarn install
 yarn start
 ```
 
-您现在可以访问 [http://localhost:3001](http://localhost:3001来尝试开发钱包。) 来尝试Dev Wallet。
-
+您现在可以访问 [http://localhost:3001](http://localhost/:3001%E6%9D%A5%E5%B0%9D%E8%AF%95%E5%BC%80%E5%8F%91%E9%92%B1%E5%8C%85%E3%80%82) 来尝试Dev Wallet。

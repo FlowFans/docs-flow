@@ -22,13 +22,13 @@ description: 如何在 Flow主网创建一个Account ？
 
 创建一个包含 keystore 内容的json文件`key.json`, 然后安装依赖：
 
-```text
+```
 npm i ethereum-keystore
 ```
 
 完成后，创建一个`run.js`文件，在该文件中导入`key.json`：
 
-```text
+```
 const { recoverKeystore } = require('ethereum-keystore');
 const keystoreJson = require('./key.json');
 
@@ -44,19 +44,19 @@ main();
 
 关于 keystore 的详细原理可查看： [https://ethfans.org/posts/what-is-an-ethereum-keystore-file](https://ethfans.org/posts/what-is-an-ethereum-keystore-file)
 
-关于 keysotre 转换导出 “私钥”的详细过程可查看： [https://script.money/posts/027-flow\_mainnet\_cli\_transaction/](https://script.money/posts/027-flow_mainnet_cli_transaction/)
+关于 keysotre 转换导出 “私钥”的详细过程可查看： [https://script.money/posts/027-flow\_mainnet\_cli\_transaction/](https://script.money/posts/027-flow\_mainnet\_cli\_transaction/)
 
 ### 2. 使用 Flow CLI 本地生成密钥对
 
 一个带有私钥的主网账户具备之后，本地来生成一个“密钥对”，为创建新账户做准备。 全保本地安装好了[Flow CLI](https://docs.onflow.org/flow-cli/generate-keys/)
 
-```text
+```
 flow keys generate
 ```
 
 会看到类似如下内容, 包含一个`公钥`和`私钥`：
 
-```text
+```
 🔴️ Store Private Key safely and don't share with anyone! 
 Private Key      c778170793026a9a7a3815dabed68ded445bde7f40a8c66889908197412be89f 
 Public Key      584245c57e5316d6606c53b1ce46dae29f5c9bd26e9e8...aaa5091b2eebcb2ac71c75cf70842878878a2d650f7
@@ -64,11 +64,11 @@ Public Key      584245c57e5316d6606c53b1ce46dae29f5c9bd26e9e8...aaa5091b2eebcb2a
 
 到这里，你完成了秘钥对的创建，妥善保护好你的`私钥`。
 
-### 3. 初始化flow.json 文件添加配置 
+### 3. 初始化flow.json 文件添加配置&#x20;
 
-在当前文件夹下执行 `flow init`后， 你会发现本地创建了一个`flow.json`文件，这里面是关于一些配置的内容,我们需填写accounts里面相关的配置，如下一般默认即可，但`privateKey`\(私钥\)，是通过上面步骤获得到的：
+在当前文件夹下执行 `flow init`后， 你会发现本地创建了一个`flow.json`文件，这里面是关于一些配置的内容,我们需填写accounts里面相关的配置，如下一般默认即可，但`privateKey`(私钥)，是通过上面步骤获得到的：
 
-```text
+```
 {
  "emulators": {
      "default": {
@@ -102,7 +102,7 @@ Public Key      584245c57e5316d6606c53b1ce46dae29f5c9bd26e9e8...aaa5091b2eebcb2a
 
 执行创建账户的命令，这里需要加一些额外的参数，保证我们能够生成的是主网中账户：
 
-```text
+```
 flow accounts create --key 81da6d86d95ef1a2801544e4b6cf4a3eaba1b6...1d96ffd9c64233e21231c519a7506ecccdedec129cd81fedd0504b829ea14f37b1602622b7a719a29e3 --signer mainnet-account --network mainnet
 ```
 
@@ -110,7 +110,7 @@ flow accounts create --key 81da6d86d95ef1a2801544e4b6cf4a3eaba1b6...1d96ffd9c642
 
 然后出现如下内容，表示创建账户的交易成功:
 
-```text
+```
 Transaction ID: 7e130f0ae269b781e77053c43b66468637ddd001e9f7c22c56f7cd51d9cc75eb
 
 Address  0x0ae342dfada66015
@@ -137,20 +137,18 @@ Contracts (hidden, use --include contracts)
 
 最后，我们可以在主网的区块浏览器，确认一下新账户`0x0ae342dfada66015`的状态和基本信息：
 
-Flow 主网区块浏览器： [https://flowscan.org/](https://flowscan.org/)  
+Flow 主网区块浏览器： [https://flowscan.org/](https://flowscan.org)\
 
 
 ### 相关资料
 
 keystore 的详细原理： [https://ethfans.org/posts/what-is-an-ethereum-keystore-file](https://ethfans.org/posts/what-is-an-ethereum-keystore-file)
 
-keysotre 转换 “私钥”的过程： [https://script.money/posts/027-flow\_mainnet\_cli\_transaction/](https://script.money/posts/027-flow_mainnet_cli_transaction/)
+keysotre 转换 “私钥”的过程： [https://script.money/posts/027-flow\_mainnet\_cli\_transaction/](https://script.money/posts/027-flow\_mainnet\_cli\_transaction/)
 
-Flow 主网区块浏览器： [https://flowscan.org/](https://flowscan.org/)
+Flow 主网区块浏览器： [https://flowscan.org/](https://flowscan.org)
 
 Flow CLI： [https://docs.onflow.org/flow-cli/generate-keys/](https://docs.onflow.org/flow-cli/generate-keys/)
 
-### 
-
-
+###
 

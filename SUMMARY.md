@@ -9,7 +9,8 @@
 
 ***
 
-* [技术文章](ji-shu-wen-zhang.md)
+* [技术文章](ji-shu-wen-zhang/README.md)
+  * [如何使用 Rarible 在 Flow上创建NFT ？](ji-shu-wen-zhang/ru-he-shi-yong-rarible-zai-flow-shang-chuang-jian-nft.md)
 
 ## SDK
 

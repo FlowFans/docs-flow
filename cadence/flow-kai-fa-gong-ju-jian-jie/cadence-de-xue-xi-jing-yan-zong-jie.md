@@ -6,15 +6,13 @@
 
 ​ 但在像Cadence这种面向资源的语言面前，所有权并不集中在单个中央智能合约的存储中。相反，每个账户拥有并存储自己的资产，资产可以在账户之间自由转移，无需通过中央智能合约进行控制。
 
-![fow\_account](/home/wtom/图片/fow_account.png)
-
 ​ 在Flow里，所有的persistent state与其接口都存储在账户中，而其他用户想要调用它们可以通过transactions执行相关代码来进行调用。
 
 ​ 以Hello World为例，可以在Playground里看到该教程。需要注意的是，Playground里提供了多账户，这极大的方便了合约的交互。在这里，我们以用户0X02的资源演示为例，
 
 ​ 部分contract内容：
 
-```text
+```
 pub resource HelloAsset {
     pub fun hello(): String {
         return "Hello, World!"
@@ -26,7 +24,7 @@ pub resource HelloAsset {
 
 ​ 在flow中，想要与资源交互，需要发送transactions：
 
-```text
+```
 import HelloWorld from 0x02
 
 // This transaction calls the "hello" method on the HelloAsset object
@@ -53,13 +51,13 @@ transaction {
 }
 ```
 
-​ 该transaction将HelloWorld从用户0x02引入，并将HelloAsset从storage移除，然后调用hello\(\)函数存储到HelloAsset资源中。
+​ 该transaction将HelloWorld从用户0x02引入，并将HelloAsset从storage移除，然后调用hello()函数存储到HelloAsset资源中。
 
 ​ script运行不需要任何账户权限，但是不能对区块链执行任何写入操作，只能读取帐户的状态。
 
 ​ 例如：
 
-```text
+```
 import HelloWorld from 0x02
 
 pub fun main() {
@@ -89,4 +87,3 @@ pub fun main() {
 ​ 总的来说，Cadence是一个包含contract，transaction，script三个部分的面向资源的编程语言。
 
 ​
-

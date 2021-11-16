@@ -1,8 +1,8 @@
 # Flow JS-SDK 源码分析 —— 部署 Cadence 合约
 
-_作者：_   [_@Caos_](https://github.com/caosbad)\_\_
+_作者：   _[_@Caos_](https://github.com/caosbad)__
 
-\_\_
+__
 
 在上一篇 「查询的组装与数据解码」的源码分析文章里，我们一起熟悉了 Flow JS-SDK 与 Flow 链相关的查询流程，其主要执行的都是查询相关的操作，并不涉及到编码和签名相关的流程。
 
@@ -17,7 +17,7 @@ _作者：_   [_@Caos_](https://github.com/caosbad)\_\_
 
 我们在 FCL demo 中也看到了有部署合约的例子，这个文件里定义了用户需要部署的合约脚本，使用 `@onflow/six-set-code` 组装部署脚本的交易体：
 
-```text
+```
 // examples/react-fcl-demo/src/demo/DeployContract.tsx
 
 const simpleContract = `
@@ -71,7 +71,7 @@ export async function Send(code: string) {
 
 这里将三种角色都设置为当前登录的用户，我们来看看 `setCode` 内部的实现：
 
-```text
+```
 // packages/six-set-code/src/six-set-code.js
 import * as sdk from "@onflow/sdk"
 import * as t from "@onflow/types"
@@ -110,7 +110,7 @@ export const template = ({ proposer, authorization, payer, code = "", deployScri
 
 新的脚本如下所示：
 
-```text
+```
 // 兼容新版的部署脚本
 const deployScript = `
 transaction(code: String) {
@@ -125,7 +125,7 @@ transaction(code: String) {
 
 我们再回头看上面的交易构建函数 `sdk.transaction`，依然使用了之前提到到 `pipe` 函数，把 `deployScript` 传入调用 `interaction` 构建 IX 交易体，将需要部署到账户中的智能合约代码作为参数传入，通过 `@onflow/sdk-build-transaction` 中的代码将 `ix.cadence` 赋值，并填充其余授权的字段，最终返回 `ix`。
 
-```text
+```
 // packages/sdk-build-transaction/src/index.js
 /* ... */
 export function transaction(...args) {
@@ -144,7 +144,7 @@ export function transaction(...args) {
 
 接着就是不熟脚本参数的设置，我们可以看到部署代码的脚本，其实是一个 Cadence 函数，并定义了其参数的名称和类型。在初始化完成`ix.cadence` 之后，我们仍然需要将部署脚本中使用到的合约代码通过编码和参数类型的定义与部署脚本函数的参数进行关联，这样在处理部署脚本的时候，可以将需要部署的代码作为参数传入到脚本中。
 
-```text
+```
 // sdk export {args, arg} from "@onflow/sdk-build-arguments"
 
 sdk.args([sdk.arg(Buffer.from(code, "utf8").toString("hex"), t.String)]) // 初始化 arg 然后拼接成 args 
@@ -154,7 +154,7 @@ sdk.args([sdk.arg(Buffer.from(code, "utf8").toString("hex"), t.String)]) // 初�
 
 这里其实使用到了 `@onflow/sdk-build-arguments` 中的两个函数，而其中 `arg` 定义参数类型，`args` 则将参数结构化赋值给 `interaction` 中的 `ix` 结构
 
-```text
+```
 // packages/sdk-build-arguments/src/index.js
 import {pipe, makeArgument} from "@onflow/interaction"
 
@@ -196,7 +196,7 @@ export const makeArgument = (arg) => (ix) => {  // 基于 ix 数据构建参数
 
 `sdk.proposer(proposer)` 这里是来自 `@onflow/sdk-build-proposer` 中的构建函数，其中也依赖了 `interaction` 定义的 `makeAccount`
 
-```text
+```
 // packages/sdk-build-proposer/src/index.js
 import {pipe, makeProposer} from "@onflow/interaction"
 
@@ -269,7 +269,7 @@ const makeAccount = (acct, tempId) => (ix) => {
 
 #### Build Validator
 
-```text
+```
 sdk.validator((ix, {Ok, Bad}) => { // 添加了验证的逻辑，要求 template 类型的交易只能有一个授权
  if (ix.authorizations.length > 1) return Bad(ix, "template only requires one authorization.")
  return Ok(ix)
@@ -297,7 +297,7 @@ export const update = (key, fn = identity) => (ix) => {
 
 这里又进入了 `@onflow/send` 的函数中，上一篇中我们提到，send 会根据不同的 ix 结构和 `tag` 路由交易处理的逻辑，我们直接进入到 `sendTransaction` 函数查看代码，这里主要是把之前的步骤组装起来的 ix 数据转化成具体的交易数据，同时完成了数据格式的编码，具体的内容请参考注释。
 
-```text
+```
 // packages/send/src/send-transaction.js
 
 
@@ -398,4 +398,3 @@ export async function sendTransaction(ix, opts = {}) {
 这里我们从 Flow JS-SDK 构建写入交易的流程入手，了解了在部署合约这样的交易中，ix 是如何构建的，包括最终返回交易结果的监听。
 
 这里因为篇幅所限，没有涵盖授权和与合约交互的流程，将会在后面几篇详述。本文中所涉及到的代码片段和注释均在[github](https://github.com/caosbad/flow-js-sdk/tree/comm) 中，供大家查阅。
-

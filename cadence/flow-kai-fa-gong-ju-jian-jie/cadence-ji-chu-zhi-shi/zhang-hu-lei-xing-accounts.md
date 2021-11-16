@@ -2,7 +2,7 @@
 
 每个帐户都可以通过两种类型进行访问：
 
-*  **公共帐户**`PublicAccount` ，代表**帐户**的公共可用部分
+* &#x20;**公共帐户**`PublicAccount` ，代表**帐户**的公共可用部分
 
 例如：  任何代码都可以使用内置的`getAccount`函数获取指定地址的`PublicAccount`的对象：
 
@@ -19,9 +19,9 @@ pub fun main() {
 ```
 {% endcode %}
 
-*  **授权帐户**`AuthAccount`，代表**帐户**的授权部分
+* ** 授权帐户**`AuthAccount`，代表**帐户**的授权部分
 
- `AuthAccount`可以完全访问其[存储](https://docs.onflow.org/cadence/language/accounts/#account-storage)，公钥和代码。 只有已[签名的交易](https://docs.onflow.org/cadence/language/accounts/transactions)才能获得`AuthAccount`帐户的。对于事务的每个脚本签名者，将`AuthAccount`传递到事务的`prepare`阶段。
+&#x20;`AuthAccount`可以完全访问其[存储](https://docs.onflow.org/cadence/language/accounts/#account-storage)，公钥和代码。 只有已[签名的交易](https://docs.onflow.org/cadence/language/accounts/transactions)才能获得`AuthAccount`帐户的。对于事务的每个脚本签名者，将`AuthAccount`传递到事务的`prepare`阶段。
 
 {% code title="transaction.cdc" %}
 ```javascript
@@ -37,6 +37,4 @@ transaction() {
 }
 ```
 {% endcode %}
-
-
 

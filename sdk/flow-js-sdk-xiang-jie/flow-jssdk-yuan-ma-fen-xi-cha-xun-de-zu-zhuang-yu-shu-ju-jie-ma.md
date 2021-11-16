@@ -1,8 +1,8 @@
 # Flow JS-SDK 源码分析 —— 查询的组装与数据解码
 
-_作者：_   [_@Caos_](https://github.com/caosbad)\_\_
+_作者：   _[_@Caos_](https://github.com/caosbad)__
 
-\_\_
+__
 
 在之前的文章 ——「使用 Javascript 与 Flow 交互」里，我们熟悉了开发环境的初始化和 FCL 与 Flow 链进行交互的一些功能，这篇文章我们将从 [onflow/flow-js-sdk](https://github.com/onflow/flow-js-sdk)源代码的层面去分析，sdk 是如何完成交易的组装和验证。
 
@@ -10,7 +10,7 @@ _作者：_   [_@Caos_](https://github.com/caosbad)\_\_
 
 以查询账户信息`getAccount`这个基本的账户查询举例， 我们根据具体实现的代码来分析：
 
-```text
+```
 const response = await sdk.send(await sdk.build([
       sdk.getAccount(addr)
     ]), { node: "http://localhost:8080" })
@@ -20,17 +20,16 @@ const response = await sdk.send(await sdk.build([
 
 这里面涉及到几个 package ：
 
-* send —— 初始化配置，根据构造的交易类型，调用不同的 `send` 方法
+*   send —— 初始化配置，根据构造的交易类型，调用不同的 `send` 方法
 
-  `packages/send/src/send.js`
-
+    `packages/send/src/send.js`
 * build —— 初始化 `interaction` 并传递交易函数 `packages/sdk/src/build/index.js`
 * gerAccount —— 初始化查询交易，并校验地址的合法性 `packages/sdk-build-get-account/src/index.js`
 * decodeResponse —— 根据返回结果解码 `packages/decode/src/decode.js`
 
 **getAccount**
 
-```text
+```
 import {pipe, makeGetAccount, Ok} from "@onflow/interaction"
 import {sansPrefix} from "@onflow/util-address"
 
@@ -49,7 +48,7 @@ export function getAccount(addr) {
 
 这里我们需要着重分析一下交易体构造的工具 [interaction](https://github.com/onflow/flow-js-sdk/blob/master/packages/interaction/src/interaction.js) ，interaction 是及不同交易类型构造，处理与验证的整体，包括了参数处理，类型验证和状态设置，这里我们先按照交易构造流程完成流程的熟悉。
 
-```text
+```
 export const GET_ACCOUNT /*             */ = 0b0000010000
 export const OK /*  */ = 0b10
 
@@ -78,7 +77,7 @@ export const makeGetAccount /*            */ = makeIx(GET_ACCOUNT)
 
 **交易体 IX 的初始结构**
 
-```text
+```
 export const UNKNOWN /*                 */ = 0b0000000001
 export const OK /*  */ = 0b10
 
@@ -127,7 +126,7 @@ const IX = `{
 
 顾名思义，Pipe 提供了将 IX 中所需要的多种处理函数或数据组装需求而实现的管道调用逻辑，最终形成一个链式处理的结果，最终返回组装与验证完成的交易结构体。
 
-```text
+```
 const recPipe = async (ix, fns = []) => {
   ix = hardMode(await ix) // 严格校验与 IX 结构比对
   if (isBad(ix) || !fns.length) return ix // 判断处理的错误状态或结束递归的条件
@@ -152,7 +151,7 @@ export const pipe = (...args) => {
 
 **build**
 
-```text
+```
 import {pipe, interaction} from "@onflow/interaction"
 
 
@@ -168,7 +167,7 @@ export const interaction = () => JSON.parse(IX)
 
 这里我们看到 `build` 函数也是调用了 `pipe` 方法先完成了 IX 基本结构的初始化，然后将 `getAccount` 计算的 IX 结果作为数组元素传入到 `pipe` 方法中，其实这里并没有用到最先初始化的 IX，而是通过 `recPipe` 函数中的判断，使用 `getAccount` 函数计算出来的 IX 替换初始化的 IX 结构。
 
-```text
+```
  if (isInteraction(cur)) return recPipe(cur, rest) // cur 作为 getAccount 输出的结构，替换了 interaction() 
 ```
 
@@ -176,7 +175,7 @@ export const interaction = () => JSON.parse(IX)
 
 我们查看 [send](https://github.com/onflow/flow-js-sdk/blob/master/packages/send/src/send.js#L23) 源代码可以看到 `send` 函数起到了校验和路由的功能，代码有删减，只保留了 sendGetAccount
 
-```text
+```
 export const send = async (ix, opts = {}) => {
   opts.node = opts.node || (await config().get("accessNode.api")) // 初始化自定义节点配置
   ix = await ix // 
@@ -197,7 +196,7 @@ export const send = async (ix, opts = {}) => {
 
 这里 Flow SDK 使用了 gRPC `protoc` 的工具定义交互的数据类型，较为易于研发与维护的数据交互方式。详情请见 `packages/protobuf`[protobuf ](https://github.com/onflow/flow-js-sdk/tree/master/packages/protobuf)在此不做详述。
 
-```text
+```
 export async function sendGetAccount(ix, opts = {}) {
   ix = await ix // 获得具体的 ix 结构�
 
@@ -233,7 +232,7 @@ export async function sendGetAccount(ix, opts = {}) {
 * 调用定义的查询类型 `getAccount` 获得具体 account 的值
 * 组装并填充至初始化后的 `response` 数据结构中
 
-```text
+```
 // packages/response/src/response.js
 const DEFAULT_RESPONSE =
 '{"tag": 0, "transaction":null, "transactionId":null, "encodedData":null, "events": null, "account": null}'
@@ -245,9 +244,9 @@ export const response = () => JSON.parse(DEFAULT_RESPONSE)
 
 **decode**
 
-最后一步是将获取到的数据进行解码，在 [decode.js](https://github.com/onflow/flow-js-sdk/blob/master/packages/decode/src/decode.js#L128) 中定义了请求数据响应的解码函数 `decodeResponse` \(代码略有删减\)
+最后一步是将获取到的数据进行解码，在 [decode.js](https://github.com/onflow/flow-js-sdk/blob/master/packages/decode/src/decode.js#L128) 中定义了请求数据响应的解码函数 `decodeResponse` (代码略有删减)
 
-```text
+```
 // 解码响应数据
 export const decodeResponse = async (response, customDecoders = {}) => {
   let decoders = { ...defaultDecoders, ...customDecoders }
@@ -283,4 +282,3 @@ export const decodeResponse = async (response, customDecoders = {}) => {
 * gRPC 作为数据类型的定义，可以提高应用层查询的便利性
 
 这次源码分析了较为简单的查询流程，让我们对应用层与区块链交互的流程有一个大致的思路，感兴趣的同学可以举一反三的查看其它查询流程的细节逻辑，相关流程的代码和注释维护在[Github](https://github.com/caosbad/flow-js-sdk/tree/comm)，供大家参考。
-
