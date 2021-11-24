@@ -10,6 +10,7 @@
 ***
 
 * [技术文章](ji-shu-wen-zhang/README.md)
+  * [Wonder 筹集了 250 万美元以帮助 DAO “接管世界”](ji-shu-wen-zhang/wonder-chou-ji-le-250-wan-mei-yuan-yi-bang-zhu-dao-jie-guan-shi-jie.md)
   * [如何使用 Rarible 在 Flow上创建NFT ？](ji-shu-wen-zhang/ru-he-shi-yong-rarible-zai-flow-shang-chuang-jian-nft.md)
 
 ## SDK
